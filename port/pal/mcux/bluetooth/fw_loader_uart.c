@@ -113,6 +113,7 @@
 #define FW_LOADER_FAILURE       1
 #define FW_LOADER_SUCCESS       0
 #define FW_LOADER_RETRY_CNT     3
+#define FW_LOADER_IGNORE_UNUSED_PARAM(v) (void)(v)
 /*==================== Typedefs =================================================*/
 
 #if defined(__GNUC__)
@@ -646,9 +647,10 @@ DECL_STATIC bool fw_loader_uart_dma_deinit(void)
     return ret;
 }
 
-DECL_STATIC BT_THREAD_RETURN_TYPE fw_loader_read_packet_task()
+DECL_STATIC BT_THREAD_RETURN_TYPE fw_loader_read_packet_task(BT_THREAD_ARGS args)
 {
 	PRINT("Read Task Started\n");
+    FW_LOADER_IGNORE_UNUSED_PARAM(args);
 	while(BT_TRUE)
 	{
 		(void) OSA_SemaphoreWait(&fw_loader_frame_rx_cb, osaWaitForever_c);
