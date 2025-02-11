@@ -21,6 +21,12 @@ if(CONFIG_MCUX_PRJSEG_middleware.wireless.ethermind.controller.wifi_nxp)
     )
 endif()
 
+if(CONFIG_MCUX_PRJSEG_middleware.wireless.ethermind)
+endif()
+
+if(CONFIG_MCUX_PRJSEG_middleware.wireless.ethermind.common.ethermind.hci)
+endif()
+
 if(CONFIG_MCUX_PRJSEG_middleware.wireless.ethermind.controller.rw610)
     mcux_add_source(
         SOURCES port/pal/mcux/bluetooth/controller/controller.h

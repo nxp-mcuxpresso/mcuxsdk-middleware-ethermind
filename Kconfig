@@ -147,13 +147,9 @@ config MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.hfp_ag_
 	bool "Component middleware.wireless.ethermind.port.pal.mcux.bluetooth.hfp_ag_pl"
 config MCUX_PRJSEG_middleware.wireless.ethermind.appl.br.al
 	bool "Component middleware.wireless.ethermind.appl.br.al"
-config MCUX_PRJSEG_middleware.wireless.ethermind.appl.ga.appl
-	bool "Component middleware.wireless.ethermind.appl.ga.appl"
 config MCUX_PRJSEG_middleware.wireless.ethermind.private.profiles.ga.libFile
 	bool "Component middleware.wireless.ethermind.private.profiles.ga.libFile"
 	imply MCUX_PRJSEG_middleware.wireless.ethermind.private.profiles.ga.include
-config MCUX_PRJSEG_middleware.wireless.ethermind.appl.ga.bearer
-	bool "Component middleware.wireless.ethermind.appl.ga.bearer"
 config MCUX_PRJSEG_middleware.wireless.ethermind.appl.br.profile_appl
 	bool "Component middleware.wireless.ethermind.appl.br.profile_appl"
 config MCUX_PRJSEG_middleware.wireless.ethermind.appl.multiprofile
