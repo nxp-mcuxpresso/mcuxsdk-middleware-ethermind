@@ -87,15 +87,15 @@ typedef struct _NWSIM_CALLINFO
 void nwsim_operations(void);
 void nwsim_init
      (
-         void (* read_cb)(UCHAR *rsp, UINT16 rsplen),
-         void (* call_control_cb)(UCHAR status),
-         UCHAR(* get_inbandring_status)(void)
+         void(*read_cb)(UCHAR *rsp, UINT16 rsplen, void * context),
+         void(*call_control_cb)(UCHAR status),
+         UCHAR(*get_inbandring_status)(void)
      );
 void nwsim_start (UINT16 sf);
 void nwsim_stop(void);
-void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen);
+void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen, void * context);
+void nwsim_send_context_rsp(UCHAR rsp_code, void * value, void * context);
 
-void nwsim_send_rsp(UCHAR rsp_code, void * value);
 API_RESULT nwsim_setup_incoming_call(CHAR * num);
 API_RESULT nwsim_setup_outgoing_call(CHAR * num);
 API_RESULT nwsim_setup_twc_incoming(CHAR * num);
@@ -108,6 +108,9 @@ API_RESULT nwsim_handle_btrh(UCHAR option);
 
 void nwsim_display_callinfo(void);
 NWSIM_CALLINFO * nwsim_alloc_call_context(UINT8 * idx);
+
+/* --------------------------------------------- API Declarations */
+#define nwsim_send_rsp(rsp, val)        nwsim_send_context_rsp((rsp), (val), NULL)
 
 #ifdef MULTI_PROFILE_FSM_SUPPORT
 void nwsim_operations_multiprofile (void);

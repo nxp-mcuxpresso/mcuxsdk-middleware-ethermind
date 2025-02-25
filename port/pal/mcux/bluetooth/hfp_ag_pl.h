@@ -40,13 +40,13 @@
 /* --------------------------------------------- API Declarations */
 void hfp_ag_init_pl
      (
-         void (* read_cb)(UCHAR *rsp, UINT16 rsplen),
+         void (* read_cb)(UCHAR *rsp, UINT16 rsplen, void * context),
          void (* call_cb)(UCHAR status),
          UCHAR(* inbandring_status_cb)(void)
      );
 void hfp_ag_start_pl (UINT16 sf);
 void hfp_ag_stop_pl(void);
-void hfp_ag_write_pl (UCHAR * cmd, UINT16 cmdlen);
+void hfp_ag_write_pl (UCHAR * cmd, UINT16 cmdlen, void * context);
 void hfp_ag_access_pl(void);
 
 #endif /* _H_HFP_AG_PL_*/

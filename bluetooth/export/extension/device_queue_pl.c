@@ -99,6 +99,8 @@ void device_queue_full_pl(DEVICE_LINK_TYPE    link_type)
     {
         /* MISRA C-2012 Rule 15.7 */
     }
+#else
+    BT_IGNORE_UNUSED_PARAM(retval);
 #endif /* BT_LE */
 
 #else
