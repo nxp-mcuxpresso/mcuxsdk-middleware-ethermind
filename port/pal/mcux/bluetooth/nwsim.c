@@ -89,7 +89,7 @@
 #define NWSIM_CALLSHELD          0x08U
 
 #define NWSIM_SETCALLSTATEIDLE() \
-        nwsim_callstate &= (UCHAR)(~NWSIM_CALLSACTIVE)
+        nwsim_callstate &= (UCHAR)(~((UCHAR)NWSIM_CALLSACTIVE))
 
 #define NWSIM_SETCALLSTATE(state) \
         nwsim_callstate |= (state)
@@ -104,7 +104,7 @@
         nwsim_callstate |= NWSIM_CALLSWAITING
 
 #define NWSIM_RESETCALLWAITING() \
-        nwsim_callstate &= (UCHAR)(~NWSIM_CALLSWAITING)
+        nwsim_callstate &= (UCHAR)(~((UCHAR)NWSIM_CALLSWAITING))
 
 #define NWSIM_ISCALLWAITING() \
         (nwsim_callstate & NWSIM_CALLSWAITING)
@@ -113,7 +113,7 @@
         nwsim_callstate |= NWSIM_CALLSHELD
 
 #define NWSIM_RESETCALLHELD() \
-        nwsim_callstate &= (UCHAR)(~NWSIM_CALLSHELD)
+        nwsim_callstate &= (UCHAR)(~((UCHAR)NWSIM_CALLSHELD))
 
 #define NWSIM_ISCALLHELD() \
         (nwsim_callstate & NWSIM_CALLSHELD)
@@ -250,7 +250,7 @@ static const char nwsim_menu[] = "\n\
  \n\
    Enter your choice: ";
 #endif /* MULTI_PROFILE_FSM_SUPPORT */
-static void (* nwsim_rsp_iface)(UCHAR *rsp, UINT16 rsplen);
+static void (* nwsim_rsp_iface)(UCHAR *rsp, UINT16 rsplen, void * context);
 static void (* nwsim_callstatus_iface)(UCHAR status);
 static UCHAR (* nwsim_get_inbandring_status_iface)(void);
 
@@ -285,7 +285,7 @@ static void nwsim_reset(void)
 
 void nwsim_init
      (
-         void (* read_cb)(UCHAR *rsp, UINT16 rsplen),
+         void (* read_cb)(UCHAR *rsp, UINT16 rsplen, void * context),
          void (* call_control_cb)(UCHAR status),
          UCHAR(* get_inbandring_status)(void)
      )
@@ -334,7 +334,7 @@ void nwsim_stop(void)
     return;
 }
 
-void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen)
+void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen, void * context)
 {
     AT_PARSER_RESPONSE at_response;
     UINT16 start_index, buffer_size, length, retval;
@@ -367,22 +367,22 @@ void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen)
     switch (at_response.keyword_type)
     {
         case AT_CIND_TEST:
-            nwsim_send_rsp (NWSIM_CIND_TEST, NULL);
-            nwsim_send_rsp (NWSIM_OK, NULL);
+            nwsim_send_context_rsp (NWSIM_CIND_TEST, NULL, context);
+            nwsim_send_context_rsp (NWSIM_OK, NULL, context);
             break;
 
         case AT_CIND_READ:
-            nwsim_send_rsp (NWSIM_CIND_READ, NULL);
-            nwsim_send_rsp (NWSIM_OK, NULL);
+            nwsim_send_context_rsp (NWSIM_CIND_READ, NULL, context);
+            nwsim_send_context_rsp (NWSIM_OK, NULL, context);
             break;
 
         case AT_CHLD_TEST:
-            nwsim_send_rsp (NWSIM_CHLD_TEST, NULL);
-            nwsim_send_rsp (NWSIM_OK, NULL);
+            nwsim_send_context_rsp (NWSIM_CHLD_TEST, NULL, context);
+            nwsim_send_context_rsp (NWSIM_OK, NULL, context);
             break;
 
         case AT_CMEE:
-            nwsim_send_rsp(NWSIM_OK, NULL);
+            nwsim_send_context_rsp(NWSIM_OK, NULL, context);
             break;
 
         case AT_CMER:
@@ -421,7 +421,7 @@ void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen)
                     nwsim_cmer = 0U;
                 }
 
-                nwsim_send_rsp (NWSIM_OK, NULL);
+                nwsim_send_context_rsp (NWSIM_OK, NULL, context);
 
                 /* Notify for voice if call active */
                 if ((nwsim_call) || (0U != nwsim_callsetup))
@@ -432,18 +432,18 @@ void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen)
             break;
 
         case ATA:
-            nwsim_send_rsp(NWSIM_OK, NULL);
+            nwsim_send_context_rsp(NWSIM_OK, NULL, context);
             (BT_IGNORE_RETURN_VALUE) nwsim_handle_call(NWSIM_INCOMING_ACCEPT);
             break;
 
         case AT_CHUP:
-            nwsim_send_rsp(NWSIM_OK, NULL);
+            nwsim_send_context_rsp(NWSIM_OK, NULL, context);
             (BT_IGNORE_RETURN_VALUE) nwsim_end_call();
             break;
 
         case ATD:
             count = 0U;
-            nwsim_send_rsp(NWSIM_OK, NULL);
+            nwsim_send_context_rsp(NWSIM_OK, NULL, context);
             index = (UCHAR)BT_str_len((CHAR *)(at_response.global_at_str + at_response.param->start_of_value_index));
 
             /* Get the index of last digit */
@@ -465,7 +465,7 @@ void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen)
 
         case AT_CCWA:
             nwsim_ccwa = at_response.global_at_str[at_response.param->start_of_value_index] - '0';
-            nwsim_send_rsp (NWSIM_OK, NULL);
+            nwsim_send_context_rsp (NWSIM_OK, NULL, context);
             break;
 
         case AT_COPS:
@@ -473,29 +473,29 @@ void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen)
                 ('0' == at_response.global_at_str[at_response.param->start_of_value_index + 2U]))
             {
                 nwsim_cops = 0x01U;
-                nwsim_send_rsp(NWSIM_OK, NULL);
+                nwsim_send_context_rsp(NWSIM_OK, NULL, context);
             }
             else
             {
-                nwsim_send_rsp (NWSIM_ERROR, NULL);
+                nwsim_send_context_rsp (NWSIM_ERROR, NULL, context);
             }
             break;
 
         case AT_COPS_READ:
             if (0x01U == nwsim_cops)
             {
-                nwsim_send_rsp(NWSIM_COPS_READ, NULL);
-                nwsim_send_rsp(NWSIM_OK, NULL);
+                nwsim_send_context_rsp(NWSIM_COPS_READ, NULL, context);
+                nwsim_send_context_rsp(NWSIM_OK, NULL, context);
             }
             else
             {
-                nwsim_send_rsp(NWSIM_ERROR, NULL);
+                nwsim_send_context_rsp(NWSIM_ERROR, NULL, context);
             }
             break;
 
         case AT_CLIP:
             nwsim_clip = at_response.global_at_str[at_response.param->start_of_value_index] - '0';
-            nwsim_send_rsp (NWSIM_OK, NULL);
+            nwsim_send_context_rsp (NWSIM_OK, NULL, context);
             break;
 
         case AT_CHLD:
@@ -504,18 +504,18 @@ void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen)
 
             if ((index != '\r') && !(nwsim_sf & 0x0080U))
             {
-                nwsim_send_rsp(NWSIM_ERROR, NULL);
+                nwsim_send_context_rsp(NWSIM_ERROR, NULL, context);
                 break;
             }
 
-            nwsim_send_rsp(NWSIM_OK, NULL);
+            nwsim_send_context_rsp(NWSIM_OK, NULL, context);
             index = (index == '\r') ? 0U : index - '0';
             (BT_IGNORE_RETURN_VALUE) nwsim_handle_twc(option, index);
             break;
 
         case AT_CNUM:
-            nwsim_send_rsp (NWSIM_CNUM, NULL);
-            nwsim_send_rsp (NWSIM_OK, NULL);
+            nwsim_send_context_rsp (NWSIM_CNUM, NULL, context);
+            nwsim_send_context_rsp (NWSIM_OK, NULL, context);
             break;
 
         case AT_CLCC:
@@ -523,31 +523,31 @@ void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen)
             {
                 if (0xFFU != nwsim_callinfo[index].status)
                 {
-                    nwsim_send_rsp (NWSIM_CLCC, &index);
+                    nwsim_send_context_rsp (NWSIM_CLCC, &index, context);
                 }
             }
-            nwsim_send_rsp (NWSIM_OK, NULL);
+            nwsim_send_context_rsp (NWSIM_OK, NULL, context);
             break;
 
         case AT_BTRH:
             retval = nwsim_handle_btrh(at_response.global_at_str[at_response.param->start_of_value_index] - '0');
             if (API_SUCCESS == retval)
             {
-                nwsim_send_rsp(NWSIM_OK, NULL);
+                nwsim_send_context_rsp(NWSIM_OK, NULL, context);
             }
             else
             {
-                nwsim_send_rsp(NWSIM_ERROR, NULL);
+                nwsim_send_context_rsp(NWSIM_ERROR, NULL, context);
             }
             break;
 
         case AT_VTS:
-            nwsim_send_rsp(NWSIM_OK, NULL);
+            nwsim_send_context_rsp(NWSIM_OK, NULL, context);
             break;
 
         case AT_BTRH_READ:
-            nwsim_send_rsp(NWSIM_BTRH, &nwsim_btrh_status);
-            nwsim_send_rsp(NWSIM_OK, NULL);
+            nwsim_send_context_rsp(NWSIM_BTRH, &nwsim_btrh_status, context);
+            nwsim_send_context_rsp(NWSIM_OK, NULL, context);
             break;
 
         case AT_BIA:
@@ -579,11 +579,11 @@ void nwsim_command_send (UCHAR * cmd, UINT16 cmdlen)
             }
 
             printf("NWSIM Indicators: 0x%08X\n", nwsim_ciev);
-            nwsim_send_rsp(NWSIM_OK, NULL);
+            nwsim_send_context_rsp(NWSIM_OK, NULL, context);
             break;
 
         default:
-            nwsim_send_rsp(NWSIM_ERROR, NULL);
+            nwsim_send_context_rsp(NWSIM_ERROR, NULL, context);
             break;
     }
 }
@@ -817,7 +817,7 @@ void nwsim_operations (void)
 }
 #endif /* MULTI_PROFILE_FSM_SUPPORT */
 
-void nwsim_send_rsp (UCHAR rsp_code, void * value)
+void nwsim_send_context_rsp (UCHAR rsp_code, void * value, void * context)
 {
     CHAR response[256U];
     UINT16 length;
@@ -928,7 +928,7 @@ void nwsim_send_rsp (UCHAR rsp_code, void * value)
 
     /* Update length and send response to interface */
     length = (UINT16)BT_str_len(response);
-    nwsim_rsp_iface((UCHAR*)response, length);
+    nwsim_rsp_iface((UCHAR*)response, length, context);
 }
 
 void nwsim_ring_timeout_handler(void * args, UINT16 size)

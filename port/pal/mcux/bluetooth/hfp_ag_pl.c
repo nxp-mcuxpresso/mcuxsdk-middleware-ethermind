@@ -27,10 +27,9 @@
 /* --------------------------------------------- Functions */
 void hfp_ag_init_pl
      (
-         void (* read_cb)(UCHAR *rsp, UINT16 rsplen),
+         void (* read_cb)(UCHAR *rsp, UINT16 rsplen, void * context),
          void (* call_cb)(UCHAR status),
          UCHAR(* inbandring_status_cb)(void)
-
      )
 {
     /* Initialize the modem/simulator */
@@ -51,10 +50,10 @@ void hfp_ag_stop_pl(void)
     nwsim_stop();
 }
 
-void hfp_ag_write_pl (UCHAR * cmd, UINT16 cmdlen)
+void hfp_ag_write_pl (UCHAR * cmd, UINT16 cmdlen, void * context)
 {
     /* Write to the modem/simulator */
-    nwsim_command_send(cmd, cmdlen);
+    nwsim_command_send(cmd, cmdlen, context);
 }
 
 void hfp_ag_access_pl(void)
