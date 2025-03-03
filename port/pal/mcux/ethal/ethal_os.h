@@ -29,18 +29,18 @@ size_t	 strnlen (const char *, size_t);
 #define EM_THREAD_RETURN_VAL_FAILURE
 
 /* Declaration of 'static' variable/function */
-#ifdef EM_HAVE_STATIC_DECL
+#if defined(EM_HAVE_STATIC_DECL) && (EM_HAVE_STATIC_DECL == 1U)
 #define DECL_STATIC                     static
-#else  /* EM_HAVE_STATIC_DECL */
+#else
 #define DECL_STATIC
-#endif /* EM_HAVE_STATIC_DECL */
+#endif /* defined(EM_HAVE_STATIC_DECL) && (EM_HAVE_STATIC_DECL == 1U) */
 
 /* Declaration of 'const' variable */
-#ifdef EM_HAVE_CONST_DECL
+#if defined(EM_HAVE_CONST_DECL) && (EM_HAVE_CONST_DECL == 1U)
 #define DECL_CONST                      const
-#else  /* EM_HAVE_CONST_DECL */
+#else
 #define DECL_CONST
-#endif /* EM_HAVE_CONST_DECL */
+#endif /* defined(EM_HAVE_CONST_DECL) && (EM_HAVE_CONST_DECL == 1U) */
 
 /* Reentrant Function Declaration */
 #ifdef EM_HAVE_REENTRANT_DECL
