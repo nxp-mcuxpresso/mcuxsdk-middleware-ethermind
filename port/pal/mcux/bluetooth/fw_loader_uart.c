@@ -774,14 +774,25 @@ void *uart_init_interface(void)
                 BT_FALSE,               /*enableCTS*/
                 BT_TRUE,                /*isSecondaryBaudRate required?*/
 #if defined(FW_LOADER_NONBLOCKING)
+#if defined(CPU_MIMXRT1176DVMAA_cm7) && defined(WIFI_BT_USE_M2_INTERFACE)
 				0,						/*dma_instance*/
 				4,						/*rx_channel*/
 				5,						/*tx_channel*/
 				0,						/*dma_mux_instance*/
-#if defined(CPU_MIMXRT1176DVMAA_cm7) && defined(WIFI_BT_USE_M2_INTERFACE)
 				kDmaRequestMuxLPUART2Rx,/*rx_request*/
 				kDmaRequestMuxLPUART2Tx /*tx_request*/
+#elif defined(CPU_MCXN947VDF_cm33_core0)
+				0,						/*dma_instance*/
+				1,						/*rx_channel*/
+				0,						/*tx_channel*/
+				0,						/*dma_mux_instance*/
+				kDma0RequestMuxLpFlexcomm2Rx,/*rx_request*/
+				kDma0RequestMuxLpFlexcomm2Tx /*tx_request*/
 #else
+				0,						/*dma_instance*/
+				4,						/*rx_channel*/
+				5,						/*tx_channel*/
+				0,						/*dma_mux_instance*/
 				kDmaRequestMuxLPUART3Rx,/*rx_request*/
 				kDmaRequestMuxLPUART3Tx /*tx_request*/
 #endif
