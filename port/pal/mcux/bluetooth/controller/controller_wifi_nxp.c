@@ -105,6 +105,7 @@ void controller_init(void)
     (void) result;
 #ifdef CONFIG_BT_IND_DNLD
     /* BTonly firmware download over UART */
+    BOARD_WIFI_BT_Enable(false);
     BOARD_WIFI_BT_Enable(true);
     intf = uart_init_interface();
     assert(intf != NULL);
