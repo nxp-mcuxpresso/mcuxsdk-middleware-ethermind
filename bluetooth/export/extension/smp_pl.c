@@ -2608,6 +2608,9 @@ API_RESULT BT_smp_get_lk_ltk_pl
     /* Init */
     retval = API_SUCCESS;
 
+    /* Lock */
+    smp_lock();
+
     if (SMP_LESC_LK_LTK_IDLE != SMP_LESC_LK_LTK_GET_STATE(&smp_lesc_txp_keys))
     {
         SMP_ERR(
@@ -2751,12 +2754,18 @@ API_RESULT BT_smp_get_lk_ltk_pl
         }
     }
 
+    /* Unlock */
+    smp_unlock();
+
     return retval;
 }
 
 void smp_lesc_lk_ltk_complete (void)
 {
     UCHAR switch_state;
+
+    /* Lock */
+    smp_lock();
 
     switch_state = SMP_LESC_LK_LTK_GET_STATE(&smp_lesc_txp_keys);
 
@@ -2830,8 +2839,14 @@ void smp_lesc_lk_ltk_complete (void)
                 /* Change state to Link Key Generation */
                 SMP_LESC_LK_LTK_SET_STATE(&smp_lesc_txp_keys,SMP_LESC_LK_LTK_IDLE);
 
+                /* Unlock */
+                smp_unlock();
+
                 /* Print the output as LK- TODO post to appl thru Callback */
                 smp_lesc_lk_ltk_gen_handler(&smp_lesc_txp_keys);
+
+                /* Lock */
+                smp_lock();
             }
             break;
 
@@ -2839,6 +2854,9 @@ void smp_lesc_lk_ltk_complete (void)
             SMP_TRC("Invalid State\n");
             break;
     }
+
+    /* Unlock */
+    smp_unlock();
 }
 #endif /* SMP_LESC_CROSS_TXP_KEY_GEN */
 #endif /* SMP_LESC */
