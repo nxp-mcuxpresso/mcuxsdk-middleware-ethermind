@@ -404,6 +404,7 @@ status_t PCAL6408A_control_op_port(pcal6408a_op_port_e port_num, uint8_t signal)
         }
         else
         {
+            is_PCAL6408A_Initialise = 0U;
         	PRINTF_E("IO-EXP init failure:%d\n", ret);
         }
     }
@@ -431,6 +432,7 @@ status_t PCAL6408A_read_op_port(pcal6408a_op_port_e port_num, uint8_t *value)
         }
         else
         {
+            is_PCAL6408A_Initialise = 0U;
             PRINTF_E("IO-EXP init failure:%d\n", ret);
         }
     }
