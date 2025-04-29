@@ -22,7 +22,8 @@
      defined (WIFI_IW612_BOARD_MURATA_2EL_USD) || defined (WIFI_IW612_BOARD_MURATA_2EL_M2) || \
      defined(WIFI_IW610_BOARD_MURATA_2LL_M2) || defined(WIFI_IW416_BOARD_AW_AM510_ARDUINO))
 
-#ifndef CONTROLLER_INIT_ESCAPE
+#if !defined (CONTROLLER_INIT_ESCAPE) || \
+    (defined (CONTROLLER_INIT_ESCAPE) && (CONFIG_COEX_APP))
 #ifdef CONFIG_BT_IND_DNLD
 #if defined(SD8978) /*RB3P*/
 #include "uartIW416_bt.h"
@@ -57,7 +58,7 @@
 #error Controller module is unsupported
 #endif /*defined(SD8978)*/
 #endif /*CONFIG_BT_IND_DNLD*/
-#endif /* CONTROLLER_INIT_ESCAPE */
+#endif /*CONTROLLER_INIT_ESCAPE*/
 
 #include "controller.h"
 #include "firmware_dnld.h"
@@ -125,6 +126,22 @@ void controller_init(void)
 #endif /*CONTROLLER_INIT_ESCAPE*/
     controller_hci_uart_init();
 }
+
+#if CONFIG_BT_IND_DNLD
+void controller_fw_reload(void)
+{
+#ifndef CONTROLLER_INIT_ESCAPE
+    int result;
+    void *intf = NULL;
+    (void) result;
+    intf = uart_init_interface();
+    assert(intf != NULL);
+    result = firmware_download(bt_fw_bin, bt_fw_bin_len, intf, 0);
+    assert(result == FWDNLD_INTF_SUCCESS);
+#endif /*CONTROLLER_INIT_ESCAPE*/
+    controller_hci_uart_init();
+}
+#endif /*CONFIG_BT_IND_DNLD*/
 
 __WEAK_FUNC int controller_hci_uart_get_configuration(controller_hci_uart_config_t *config)
 {

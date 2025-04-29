@@ -143,6 +143,10 @@ defined(MIMXRT1172_SERIES) || defined(MIMXRT1171_SERIES)
 static hal_i2c_master_handle_t handle;
 static uint8_t is_PCAL6408A_Initialise = 0U;
 #endif /*PCAL6408A_IO_EXP_ENABLE*/
+
+#if CONFIG_BT_IND_DNLD
+extern void controller_fw_reload(void);
+#endif /*CONFIG_BT_IND_DNLD*/
 /*******************************************************************************
  * Function Prototypes
  ******************************************************************************/
@@ -554,7 +558,7 @@ DECL_STATIC BT_THREAD_RETURN_TYPE controller_redownload_firmware(BT_THREAD_ARGS 
     {
         OSA_SemaphoreWait(xStartIRThread, osaWaitForever_c);
         ir_state_update(IR_BT_FW_DNLD_START);
-        controller_init();
+        controller_fw_reload();
         ir_state_update(IR_BT_FW_DNLD_COMPELTED);
         OSA_SemaphorePost(xWaitForBTDownload);
     }
