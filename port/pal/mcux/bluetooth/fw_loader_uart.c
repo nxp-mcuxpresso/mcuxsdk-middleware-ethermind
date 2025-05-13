@@ -25,8 +25,7 @@
 #else
 #include "fsl_adapter_uart.h"
 #endif // USE_LPUART_DRIVER
-#if (defined(MIMXRT1062_SERIES) || defined(MIMXRT1061_SERIES) || defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || \
-defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || defined(MIMXRT1171_SERIES))
+#if (defined(MIMXRT1060_CPU_SERIES) || defined(MIMXRT1170_CPU_SERIES))
 #include "fsl_iomuxc.h"
 #endif /* RT1060 and RT1170 */
 #include "eBT_os.h"
@@ -754,24 +753,20 @@ void *uart_init_interface(void)
     DECL_STATIC fw_download_setting_t fw_download_setting = {
         .uartConfig =
             {
-#if (defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
-defined(MIMXRT1171_SERIES)) && defined(WIFI_BT_USE_M2_INTERFACE)
+#if defined(MIMXRT1170_CPU_SERIES) && defined(WIFI_BT_USE_M2_INTERFACE)
                 LPUART2,                /*FW download UART port address*/
 #else
                 BOARD_BT_UART_BASEADDR, /*FW download UART port address*/
-#endif /*(defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
- defined(MIMXRT1171_SERIES)) && defined(WIFI_BT_USE_M2_INTERFACE)*/
+#endif /*defined(MIMXRT1170_CPU_SERIES)  && defined(WIFI_BT_USE_M2_INTERFACE)*/
                 0,                      /*BT UART clock frequency */
                 115200U,                /*initial baud-rate for boot-loader*/
                 3000000U,               /*secondary baud-rate for boot-loader*/
                 0U,                     /*UART parity bits*/
-#if (defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
-defined(MIMXRT1171_SERIES)) && defined(WIFI_BT_USE_M2_INTERFACE)
+#if defined(MIMXRT1170_CPU_SERIES) && defined(WIFI_BT_USE_M2_INTERFACE)
                 2U,                     /*UART Instance*/
 #else
                 BOARD_BT_UART_INSTANCE, /*UART Instance*/
-#endif /*(defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
- defined(MIMXRT1171_SERIES)) && defined(WIFI_BT_USE_M2_INTERFACE)*/
+#endif /*defined(MIMXRT1170_CPU_SERIES)  && defined(WIFI_BT_USE_M2_INTERFACE)*/
                 1U,                     /*UART stop bits*/
                 BT_TRUE,                /*enableTx*/
                 BT_TRUE,                /*enableRx*/
@@ -779,8 +774,7 @@ defined(MIMXRT1171_SERIES)) && defined(WIFI_BT_USE_M2_INTERFACE)
                 BT_FALSE,               /*enableCTS*/
                 BT_TRUE,                /*isSecondaryBaudRate required?*/
 #if defined(FW_LOADER_NONBLOCKING)
-#if (defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
-defined(MIMXRT1171_SERIES)) && defined(WIFI_BT_USE_M2_INTERFACE)
+#if defined(MIMXRT1170_CPU_SERIES) && defined(WIFI_BT_USE_M2_INTERFACE)
 				0,						/*dma_instance*/
 				4,						/*rx_channel*/
 				5,						/*tx_channel*/
@@ -807,13 +801,11 @@ defined(MIMXRT1171_SERIES)) && defined(WIFI_BT_USE_M2_INTERFACE)
         BT_FALSE, /*wait4HdrSig*/
         BT_FALSE  /*isFwDownloadRetry*/
     };
-#if (defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
- defined(MIMXRT1171_SERIES)) && defined(WIFI_BT_USE_M2_INTERFACE)
+#if defined(MIMXRT1170_CPU_SERIES) && defined(WIFI_BT_USE_M2_INTERFACE)
     fw_download_setting.uartConfig.uartClkFreq = CLOCK_GetRootClockFreq(kCLOCK_Root_Lpuart2);
 #else
     fw_download_setting.uartConfig.uartClkFreq = BOARD_BT_UART_CLK_FREQ;
-#endif /*(defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
- defined(MIMXRT1171_SERIES)) && defined(WIFI_BT_USE_M2_INTERFACE)*/
+#endif /*defined(MIMXRT1170_CPU_SERIES) && defined(WIFI_BT_USE_M2_INTERFACE)*/
     uartIntf.intf_s.intf_specific              = &fw_download_setting;
     uartIntf.intf_s.fwdnld_intf_send           = uart_fw_download;
     uartIntf.intf_s.fwdnld_intf_prepare        = uart_fw_download_prep;
@@ -3018,25 +3010,23 @@ DECL_STATIC fwdnld_intf_ret_t uart_fw_download_prep(struct fwdnldintf *intf, voi
 
 void wakeUpControllerFromBootSleep(void)
 {
-#if (defined(MIMXRT1061_SERIES) ||  defined(MIMXRT1062_SERIES) || defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || \
- defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || defined(MIMXRT1171_SERIES))
+#if (defined(MIMXRT1060_CPU_SERIES) ||  defined(MIMXRT1170_CPU_SERIES))
 
       gpio_pin_config_t gpio_config = {kGPIO_DigitalOutput, 1U, kGPIO_NoIntmode};
 
-#if (defined(MIMXRT1062_SERIES) || defined(MIMXRT1061_SERIES)) // For RT1060
+#if (defined(MIMXRT1060_CPU_SERIES)) // For RT1060
     #define WAKEUP_FROM_BOOTSLEEP_TRIGGER_GPIO          GPIO1
     #define WAKEUP_FROM_BOOTSLEEP_TRIGGER_GPIO_IOMUX    IOMUXC_GPIO_AD_B1_05_GPIO1_IO21
     #define WAKEUP_FROM_BOOTSLEEP_TRIGGER_GPIO_IO       21
     #define WAKEUP_FROM_BOOTSLEEP_TRIGGER_REVERT_IOMUX  IOMUXC_GPIO_AD_B1_05_LPUART3_RTS_B
     #define WAKEUP_FROM_BOOTSLEEP_TRIGGER_IOMUX_CONFIG  0x10B0U
-#elif (defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
- defined(MIMXRT1171_SERIES)) // For RT1170
+#elif (defined(MIMXRT1170_CPU_SERIES)) // For RT1170
     #define WAKEUP_FROM_BOOTSLEEP_TRIGGER_GPIO          GPIO11
     #define WAKEUP_FROM_BOOTSLEEP_TRIGGER_GPIO_IOMUX    IOMUXC_GPIO_DISP_B2_13_GPIO11_IO14
     #define WAKEUP_FROM_BOOTSLEEP_TRIGGER_GPIO_IO       14
     #define WAKEUP_FROM_BOOTSLEEP_TRIGGER_REVERT_IOMUX  IOMUXC_GPIO_DISP_B2_13_LPUART2_RTS_B
     #define WAKEUP_FROM_BOOTSLEEP_TRIGGER_IOMUX_CONFIG  0x02U
-#endif /* (defined(MIMXRT1061_SERIES) || defined(MIMXRT1062_SERIES)) */
+#endif /* (defined(MIMXRT1060_CPU_SERIES)) */
 
       IOMUXC_SetPinMux(WAKEUP_FROM_BOOTSLEEP_TRIGGER_GPIO_IOMUX,0U);
       IOMUXC_SetPinConfig (WAKEUP_FROM_BOOTSLEEP_TRIGGER_GPIO_IOMUX, WAKEUP_FROM_BOOTSLEEP_TRIGGER_IOMUX_CONFIG);
