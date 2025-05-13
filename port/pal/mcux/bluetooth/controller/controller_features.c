@@ -37,16 +37,18 @@
 #define PCAL6408A_I2C_ADDR 				(0x20U)
 #define PCAL6408A_I2C_BAUDRATE 			(400000U)
 
-#if defined (WIFI_BT_USE_M2_INTERFACE) && defined (CPU_MIMXRT1176DVMAA_cm7)
+#if defined (WIFI_BT_USE_M2_INTERFACE) && (defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || \
+ defined(MIMXRT1172_SERIES) || defined(MIMXRT1171_SERIES))
 #define PCAL6408A_I2C_INSTANCE 			(5U)
 #define PCAL6408AC_I2C_CLOCK_FREQ 		(CLOCK_GetFreq(kCLOCK_OscRc48MDiv2))
-#elif defined (WIFI_BT_USE_M2_INTERFACE) && defined (CPU_MIMXRT1062DVL6B_cm7)
+#elif defined (WIFI_BT_USE_M2_INTERFACE) && defined (MIMXRT1062_SERIES)
 #define PCAL6408A_I2C_INSTANCE 			(1U)
 #define PCAL6408AC_I2C_CLOCK_FREQ  		(24000000U)
 #else
 #define PCAL6408A_I2C_INSTANCE 			(5U)
 #define PCAL6408AC_I2C_CLOCK_FREQ 		(CLOCK_GetFreq(kCLOCK_OscRc48MDiv2))
-#endif /*defined (WIFI_BT_USE_M2_INTERFACE) && defined (CPU_MIMXRT1176DVMAA_cm7)*/
+#endif /*defined (WIFI_BT_USE_M2_INTERFACE) && (defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || \
+ defined(MIMXRT1172_SERIES) || defined(MIMXRT1171_SERIES))*/
 
 #define PCAL6408A_CHECK_RET(x, status) 	   \
         (status) = (x);                    \
@@ -72,7 +74,7 @@
     PRINTF_D("IR status update: %s\n", #status); \
 }
 /* IR RESET INDICATION GPIO SETTINGS */
-#if (defined(CPU_MIMXRT1062DVMAA_cm7) || defined(CPU_MIMXRT1062DVL6A_cm7) || defined (CPU_MIMXRT1062DVL6B_cm7))
+#if (defined(MIMXRT1062_SERIES) || defined(MIMXRT1061_SERIES))
 #if CONTROLLER_IR_GPIO_PIN_TOGGLE
 /* IR RST INDICATION I/P GPIO, J22 PIN2*/
 /*TODO: Confirm if IR-RST-INDICATION feature required,
@@ -99,7 +101,8 @@
 #define IOMUXC_GPIO_IR_OUTBAND_TRIGGER IOMUXC_GPIO_AD_B1_02_GPIO1_IO18
 #endif /*!defined(WIFI_IW612_BOARD_MURATA_2EL_M2) && !defined(WIFI_IW610_BOARD_MURATA_2LL_M2)*/
 
-#elif defined(CPU_MIMXRT1176DVMAA_cm7) // For RT1170
+#elif defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
+ defined(MIMXRT1171_SERIES) // For RT1170
 
 #if CONTROLLER_IR_GPIO_PIN_TOGGLE
 /* IR RST INDICATION I/P GPIO, J9 PIN2, IOMUXC_GPIO_DISP_B2_11*/
@@ -124,7 +127,7 @@
 #define IOMUXC_GPIO_IR_OUTBAND_TRIGGER IOMUXC_GPIO_AD_15_GPIO9_IO14
 #endif /*!defined(WIFI_IW612_BOARD_MURATA_2EL_M2) && !defined(WIFI_IW610_BOARD_MURATA_2LL_M2) */
 
-#endif /* (defined(CPU_MIMXRT1062DVMAA_cm7) || (CPU_MIMXRT1062DVL6A_cm7)) */
+#endif /* (defined(MIMXRT1061_SERIES) || (MIMXRT1062_SERIES)) */
 #endif /*ENABLE_BT_IND_RESET*/
 
 /*******************************************************************************

@@ -23,9 +23,10 @@
 #include "board.h"
 #include "fsl_phy.h"
 
-#if defined(CPU_MIMXRT1176DVMAA_cm7)
+#if defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
+defined(MIMXRT1171_SERIES)
 #include "fsl_phyrtl8211f.h"
-#elif defined(CPU_MIMXRT1062DVL6A_cm7) || defined(CPU_MIMXRT1062DVL6B_cm7) || defined(RW610)
+#elif defined(MIMXRT1061_SERIES) || defined(MIMXRT1062_SERIES) || defined(RW610)
 #include "fsl_phyksz8081.h"
 #endif
 
@@ -36,7 +37,8 @@
         0x02, 0x12, 0x13, 0x10, 0x15, 0x11 \
     }
 
-#if defined(CPU_MIMXRT1176DVMAA_cm7)
+#if defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
+defined(MIMXRT1171_SERIES)
 
 /* Address of PHY interface. */
 #define EXAMPLE_PHY_ADDRESS BOARD_ENET1_PHY_ADDRESS
@@ -51,7 +53,7 @@ phy_rtl8211f_resource_t g_phy_resource;
 /* ENET instance select. */
 #define EXAMPLE_NETIF_INIT_FN ethernetif1_init
 
-#elif defined(CPU_MIMXRT1062DVL6A_cm7) || defined(CPU_MIMXRT1062DVL6B_cm7) || defined(RW610)
+#elif defined(MIMXRT1061_SERIES) || defined(MIMXRT1062_SERIES) || defined(RW610)
 
 /* Address of PHY interface. */
 #define EXAMPLE_PHY_ADDRESS BOARD_ENET0_PHY_ADDRESS
@@ -66,9 +68,10 @@ phy_ksz8081_resource_t g_phy_resource;
 #endif
 
 /* ENET clock frequency. */
-#if defined(CPU_MIMXRT1062DVL6A_cm7) || defined (CPU_MIMXRT1062DVL6B_cm7)
+#if defined(MIMXRT1061_SERIES) || defined (MIMXRT1062_SERIES)
 #define EXAMPLE_CLOCK_FREQ CLOCK_GetFreq(kCLOCK_IpgClk)
-#elif defined(CPU_MIMXRT1176DVMAA_cm7)
+#elif defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || defined(MIMXRT1172_SERIES) || \
+defined(MIMXRT1171_SERIES)
 #define EXAMPLE_CLOCK_FREQ CLOCK_GetRootClockFreq(kCLOCK_Root_Bus)
 #elif defined(RW610_SERIES) ||  defined(RW612_SERIES)
 #define EXAMPLE_CLOCK_FREQ CLOCK_GetMainClkFreq()
