@@ -30,14 +30,6 @@
 
 /* --------------------------------------------- Macros */
 
-#if defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || \
-defined(MIMXRT1172_SERIES) || defined(MIMXRT1171_SERIES)
-#define MIMXRT1170_CPU_SERIES
-#endif
-
-#if defined(MIMXRT1062_SERIES) || defined(MIMXRT1061_SERIES)
-#define MIMXRT1060_CPU_SERIES
-#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
