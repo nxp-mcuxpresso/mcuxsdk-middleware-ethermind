@@ -4919,6 +4919,8 @@
  *  Dependency: None.
  */
 #define JPL_USE_APP_MEMORY
+/** To get statistical (state) information from JPL (in test mode) */
+#define JPL_TEST_MODE
 
 /* ----------------------------------------------------------------------- */
 /* ==== Module Profiling Flags =========================================== */
