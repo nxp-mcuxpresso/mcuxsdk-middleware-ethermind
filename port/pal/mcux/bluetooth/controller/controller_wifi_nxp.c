@@ -20,7 +20,8 @@
      defined(WIFI_IW611_BOARD_MURATA_2DL_USD) || defined (WIFI_IW611_BOARD_MURATA_2DL_M2) || \
      defined(WIFI_AW611_BOARD_UBX_JODY_W5_USD) || defined (WIFI_AW611_BOARD_UBX_JODY_W5_M2) || \
      defined (WIFI_IW612_BOARD_MURATA_2EL_USD) || defined (WIFI_IW612_BOARD_MURATA_2EL_M2) || \
-     defined(WIFI_IW610_BOARD_MURATA_2LL_M2) || defined(WIFI_IW416_BOARD_AW_AM510_ARDUINO))
+     defined(WIFI_IW610_BOARD_MURATA_2LL_M2) || defined(WIFI_IW610_BOARD_MURATA_2LL_USD) || \
+     defined(WIFI_IW416_BOARD_AW_AM510_ARDUINO))
 
 #if !defined (CONTROLLER_INIT_ESCAPE) || \
     (defined (CONTROLLER_INIT_ESCAPE) && (CONFIG_COEX_APP))
@@ -166,7 +167,7 @@ static void controller_hci_uart_init(void)
      defined(WIFI_IW416_BOARD_AW_AM510MA) || defined(WIFI_IW416_BOARD_MURATA_1XK_USD) ||      \
      defined(WIFI_IW416_BOARD_MURATA_1XK_M2) || defined(WIFI_88W8987_BOARD_MURATA_1ZM_USD) || \
      defined(WIFI_88W8987_BOARD_MURATA_1ZM_M2) || defined(WIFI_IW610_BOARD_MURATA_2LL_M2) ||  \
-     defined(WIFI_IW416_BOARD_AW_AM510_ARDUINO))
+     defined(WIFI_IW610_BOARD_MURATA_2LL_USD) || defined(WIFI_IW416_BOARD_AW_AM510_ARDUINO))
     /*delay to make sure controller is ready to receive command*/
     OSA_TimeDelay(100);
 #endif
