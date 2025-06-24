@@ -144,7 +144,7 @@ static hal_i2c_master_handle_t handle;
 static uint8_t is_PCAL6408A_Initialise = 0U;
 #endif /*PCAL6408A_IO_EXP_ENABLE*/
 
-#if CONFIG_BT_IND_DNLD
+#ifdef CONFIG_BT_IND_DNLD
 extern void controller_fw_reload(void);
 #endif /*CONFIG_BT_IND_DNLD*/
 /*******************************************************************************

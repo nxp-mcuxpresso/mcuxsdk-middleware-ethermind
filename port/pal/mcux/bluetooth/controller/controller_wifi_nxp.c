@@ -128,7 +128,7 @@ void controller_init(void)
     controller_hci_uart_init();
 }
 
-#if CONFIG_BT_IND_DNLD
+#ifdef CONFIG_BT_IND_DNLD
 void controller_fw_reload(void)
 {
 #ifndef CONTROLLER_INIT_ESCAPE
