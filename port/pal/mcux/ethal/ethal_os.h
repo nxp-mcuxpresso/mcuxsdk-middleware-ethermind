@@ -55,16 +55,14 @@ size_t	 strnlen (const char *, size_t);
  * Default EM Task's preferred Stack Depth and Priority
  */
 #define EM_OS_TASK_STACKDEPTH           (4U * 1024U)
-#if !defined(CONFIG_WIFI_BLE_COEX_APP) || (CONFIG_WIFI_BLE_COEX_APP == 0)
+
 #if defined(RW610_SERIES) || defined(RW612_SERIES)
 /* The Priority of EtherMind Task needs higher than HAL_IMUMain Task for RW610/RW612 */
-#define EM_OS_TASK_PRIORITY             (8U)
+#define EM_OS_TASK_PRIORITY             (configMAX_PRIORITIES - 2U)
 #else
-#define EM_OS_TASK_PRIORITY             (6U)
+#define EM_OS_TASK_PRIORITY             (configMAX_PRIORITIES - 4U)
 #endif /* defined(RW610_SERIES) && defined(RW612_SERIES) */
-#else
-#define EM_OS_TASK_PRIORITY             (3U)
-#endif
+
 /**
  * Macro for Default Task Name.
  * The default task name is mapped to the Stringized form of the Task routine
