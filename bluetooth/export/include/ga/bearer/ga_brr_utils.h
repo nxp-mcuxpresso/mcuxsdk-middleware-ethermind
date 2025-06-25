@@ -23,6 +23,9 @@
 
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 
 /**
@@ -126,5 +129,9 @@ GA_RESULT ga_brr_free_char_uuid_cntx
           (
               /* IN  */ GA_BRR_UUID c_uuid
           );
+
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_GA_BRR_UTILS_ */
 

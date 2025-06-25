@@ -49,6 +49,9 @@
 /* ----------------------------------------------- Structures/Data Types */
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ----------------------------------------------- Function Declarations */
 void device_queue_pl_init ( void );
 
@@ -71,6 +74,9 @@ void device_queue_cleanup_pl
      );
 #endif /* STORAGE_CHECK_CONSISTENCY_ON_RESTORE */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_DEVICE_QUEUE_PL_ */
 
 

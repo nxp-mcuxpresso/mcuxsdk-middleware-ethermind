@@ -29,6 +29,9 @@
 #define V_INIT_COMPLETE               3
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /** ============================================= Internal Functions */
 
 /** ============================================= API Declarations */
@@ -49,5 +52,8 @@
 
 void app_vendor_specific_init(void ((*callback) (void)));
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_VENDOR_SPECIFIC_INIT_ */
 

@@ -25,6 +25,9 @@
 /* -------------------------------- Unions */
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* -------------------------------- Function Declarations */
 /*
  * Stack Initialization modules call this function to initialize
@@ -54,6 +57,9 @@ API_RESULT bt_sdp_get_user_context_id ( /* OUT */ UCHAR *context_id );
 #endif /* BT_DRIVER_MODE */
 
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_SDP_ */
 
 

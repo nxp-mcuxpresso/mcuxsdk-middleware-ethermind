@@ -30,6 +30,9 @@
 
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 #if ((defined BAP_PACS_CLIENT) || (defined BAP_PACS_SERVER) || (defined BAP_BROADCAST_SOURCE) || (defined BAP_BROADCAST_SINK))
 GA_RESULT cap_iface_process_bap_event
@@ -107,6 +110,10 @@ GA_RESULT cap_iface_process_csis_event
               UINT16        datalen
           );
 #endif /* CSIP_COORDINATOR */
+
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_CAP_ */
 
 

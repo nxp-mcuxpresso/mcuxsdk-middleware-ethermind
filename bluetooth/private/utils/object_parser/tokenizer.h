@@ -32,6 +32,9 @@ typedef struct
 
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -63,4 +66,7 @@ UINT16 token_match
            UINT16 * toked_len
        );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_TOKENIZER_ */

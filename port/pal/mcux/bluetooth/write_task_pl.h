@@ -23,6 +23,9 @@
 /* ----------------------------------------------- Structures/Data Types */
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ----------------------------------------------- Function Declarations */
 /**
  *  \fn wt_init_pl
@@ -190,5 +193,8 @@ API_RESULT wt_shutdown_pl(void);
 #define wt_signal_pl() \
         BT_thread_cond_signal (&wt_cv);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_WRITE_TASK_PL_ */
 

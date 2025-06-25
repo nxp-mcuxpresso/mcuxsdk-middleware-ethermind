@@ -27,6 +27,9 @@
 #define HCI_UART_TX_NONBLOCKING 0u
 #endif /* HCI_UART_TX_NONBLOCKING */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ---------------------------------- Function Declarations */
 /** HCI UART enable interface */
 /* void hci_uart_enable(void); */
@@ -47,5 +50,8 @@ void hci_uart_write_data(UCHAR *data, UINT16 datalen);
 
 void hci_uart_set_serial_settings (CHAR *device, UINT32 baud);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_HCI_UART_ */
 

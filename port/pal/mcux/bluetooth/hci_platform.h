@@ -30,6 +30,9 @@
 /*                              Public prototypes                             */
 /* -------------------------------------------------------------------------- */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /** HCI PLATFORM Initialization & Shutdown */
 void hci_platform_init (void);
 void hci_platform_bt_init (void);
@@ -40,5 +43,8 @@ API_RESULT hci_platform_send_data (UCHAR, UCHAR *, UINT16, UCHAR);
 API_RESULT hci_transport_write_data (UCHAR, UCHAR *, UINT16, UCHAR);
 void hci_platform_write_data(UCHAR *, UINT16);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_HCI_PLATFORM_ */
 

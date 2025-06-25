@@ -58,6 +58,9 @@ typedef void (* BT_COMMON_UL_INIT_CB_PL)(void);
  */
 typedef void (* BT_COMMON_UL_DEINIT_CB_PL)(void);
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ------------------------------------------- Function Declarations */
 /* EtherMind-Init: Platform Lower & Upper Handler */
 void ethermind_init_lower_pl(void);
@@ -86,5 +89,8 @@ void BT_ethermind_register_ul_cb_pl
      );
 #endif /* BT_COMMON_PL_SUPPORT_UL_CB */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_BT_COMMON_PL_ */
 

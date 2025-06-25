@@ -30,6 +30,10 @@
 #define OTS_TRANS_TX_IN_PROGRESS 0x02
 #define OTS_TRANS_RX_IN_PROGRESS 0x03
 #define OTS_TRANS_ABORT          0x04
+
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 
 /**
@@ -99,6 +103,10 @@ GA_RESULT ots_data_channel_write
               /* IN */ UCHAR       * buffer,
               /* IN */ UINT16        buffer_len
           );
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif /* OTP_SERVER */
 

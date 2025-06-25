@@ -17,6 +17,9 @@
 #include "BT_common.h"
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- API Declarations */
 API_RESULT leaudio_create_task_pl(BT_THREAD_START_ROUTINE routine);
 void leaudio_init_pl (UCHAR role);
@@ -65,4 +68,7 @@ UINT32 le_audio_pl_get_sdu_timestamp (UINT32 seq_num);
 API_RESULT le_audio_pl_validate_next_timestamp (void);
 #endif /*defined(LE_AUDIO_SRC_SYNC_ENABLE) && (LE_AUDIO_SRC_SYNC_ENABLE > 0)*/
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_LEAUDIO_PL_*/

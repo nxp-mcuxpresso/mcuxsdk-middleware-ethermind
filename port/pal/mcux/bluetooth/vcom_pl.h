@@ -62,6 +62,9 @@ typedef struct _VCOM_INSTANCE
 
 } VCOM_INSTANCE;
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ---------------------------------- Function Declarations */
 /** VCOM Interfaces */
 void vcom_init_pl(void);
@@ -75,5 +78,8 @@ VCOM_HANDLE vcom_connect_pl
 VCOM_HANDLE vcom_disconnect_pl(VCOM_HANDLE handle);
 INT16 vcom_write_pl(VCOM_HANDLE handle, UCHAR * buf, UINT16 length);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_VCOM_PL_ */
 

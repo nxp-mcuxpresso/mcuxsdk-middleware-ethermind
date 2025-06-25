@@ -72,6 +72,9 @@
 
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -94,5 +97,9 @@ void EM_num_to_str_pl
          /* OUT */ char * str,
          /* OUT */ int  * len
      );
+
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_EM_PLATFORM_ */
 

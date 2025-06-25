@@ -25,6 +25,9 @@
 
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -36,5 +39,8 @@ API_RESULT btsnoop_close_pl (void);
 UINT16 btsnoop_write_pl (void * buffer, UINT16 size);
 UINT64 btsnoop_get_us_timestamp_pl(void);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_BTSNOOP_PL_ */
 

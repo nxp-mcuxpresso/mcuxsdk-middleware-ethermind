@@ -156,6 +156,9 @@ typedef struct _EM_FOPS_FILINFO
     UINT16  fattrib;
 } EM_FOPS_FILINFO;
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ------------------------- Function Declarations */
 
 EM_RESULT EM_fops_get_current_directory
@@ -322,5 +325,8 @@ EM_RESULT EM_vfops_set_path_forward
 
 void EM_fops_list_directory (CHAR * path);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_ETHAL_FOPS_ */
 

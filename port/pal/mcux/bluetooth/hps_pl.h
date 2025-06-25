@@ -53,6 +53,9 @@ typedef API_RESULT (* HPS_TRANSPORT_CB_PL)
                        UINT16 hps_http_rsp_len
                    );
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* -------------------------------------------- Function Declarations */
 /**
  * HPS PL interface for transport Initialization.
@@ -87,5 +90,8 @@ API_RESULT hps_fetch_ip_from_hostname_pl
                UCHAR * ip
            );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_HPS_PL_ */
 

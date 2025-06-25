@@ -34,6 +34,9 @@ typedef UINT32 SM_DEVICE_ATTR_PL;
 
 /* ----------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 
 /* ----------------------------------------- API Declarations */
 /** To return a device with specified Device Attribute */
@@ -102,6 +105,9 @@ void sm_dump_device_rank_pl (void);
 #define sm_dump_device_rank_pl()
 #endif /* SEC_DEBUG */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_SM_PL_ */
 
 

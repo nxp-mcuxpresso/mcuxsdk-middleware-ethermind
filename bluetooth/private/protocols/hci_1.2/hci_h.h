@@ -45,6 +45,9 @@
 #define HCI_ACTIVE_BROADCAST                        0x01U
 #define HCI_PICONET_BROADCAST                       0x02U
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ------------------------------------------------- Function Declarations */
 
 /* ------------------------------------------------ API Declarations */
@@ -144,5 +147,8 @@ API_RESULT hci_sm_remote_oob_data_request_reply
            );
 #endif /* BT_SSP_OOB */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_HCI_H_ */
 

@@ -21,6 +21,9 @@
 /* ----------------------------------------- Global Definitions */
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ----------------------------------------- API Declarations */
 /** Initialization & Shutdown of MCAP */
 void em_mcap_init (void);
@@ -32,5 +35,8 @@ void em_mcap_shutdown(void);
 void mcap_bt_init (void);
 void mcap_bt_shutdown (void);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_MCAP_ */
 

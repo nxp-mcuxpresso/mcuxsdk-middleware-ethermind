@@ -20,6 +20,9 @@
 #include "BT_sdp_api.h"
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ------------------------ Function Declarations */
 void em_db_sdp_init(void);
 
@@ -27,5 +30,8 @@ void em_db_sdp_init(void);
 void em_db_sdp_shutdown(void);
 #endif /* BT_HAVE_SHUTDOWN */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_DATABASE_ */
 

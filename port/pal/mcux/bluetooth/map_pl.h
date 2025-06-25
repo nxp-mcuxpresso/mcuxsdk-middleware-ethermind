@@ -77,6 +77,9 @@ typedef struct _MAP_MSG_ATTR_PL
 #define MAP_PL_TRC                      BT_debug_null
 #endif /* MAP_PL_DEBUG */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 API_RESULT map_get_message_attributes_pl
            (
@@ -188,5 +191,8 @@ API_RESULT BT_map_update_conversation_participant_fields_pl
                /* IN */  UCHAR   *conv_id
            );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_MAP_PL_ */
 

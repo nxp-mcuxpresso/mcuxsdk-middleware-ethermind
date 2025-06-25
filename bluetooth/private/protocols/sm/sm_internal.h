@@ -525,6 +525,9 @@ typedef struct
 #endif /* SM_HAVE_MODE_2 */
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ----------------------------------------- Function Declarations */
 /** Operations on Security Manager Device Database */
 UINT32 sm_create_device_entity
@@ -628,5 +631,8 @@ API_RESULT sm_create_device_node (UCHAR * bd_addr, DEVICE_HANDLE * handle);
 
 void sm_get_device_address (UINT32 di,UCHAR * bd_addr);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_SM_INTERNAL_ */
 

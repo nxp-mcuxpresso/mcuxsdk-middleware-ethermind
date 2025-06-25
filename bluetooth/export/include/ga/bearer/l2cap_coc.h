@@ -418,6 +418,9 @@ typedef UINT8 L2CAP_COC_MODE;
 #define OTP_L2CAP_MAX_COC_ECBFC                   2U
 #endif /* L2CAP_SUPPORT_ECBFC_MODE */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 /**
  *  \cond ignore_this Internal
@@ -753,6 +756,9 @@ GA_RESULT l2cap_coc_disconnect_req
            );
 #endif /* L2CAP_SUPPORT_CBFC_MODE || L2CAP_SUPPORT_ECBFC_MODE */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_L2CAP_COC_ */
 
 

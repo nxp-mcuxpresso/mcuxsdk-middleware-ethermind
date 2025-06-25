@@ -344,6 +344,10 @@ typedef struct _MICP_RSP_INFO
 #define MC_EVENT_INVALID                                0xFFU
 
 /** \} */
+
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 
 /* ============= MICP Controller ============= */
@@ -748,6 +752,9 @@ GA_RESULT MICP_send_rsp
 
 #endif /* MICP_RENDERER */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_MICP_ */
 
 

@@ -107,6 +107,9 @@ typedef struct _HAP_SE
 #define HAP_LOCK_VOID()              GA_MUTEX_LOCK_VOID(hap_mutex, HAP)
 #define HAP_UNLOCK_VOID()            GA_MUTEX_UNLOCK_VOID(hap_mutex, HAP)
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 #ifdef HAP_CLIENT
 /* Callback registered with GA Bearer for Profile Callbacks only */
@@ -187,5 +190,8 @@ GA_RESULT hap_fetch_evt_id
           );
 #endif /* HAP_SERVER */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_HAP_INTERNAL_ */
 

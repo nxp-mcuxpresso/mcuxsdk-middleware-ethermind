@@ -99,6 +99,9 @@ typedef struct _AES_CMAC_CONTEXT
 
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- API Declarations */
 /* Initialize module */
 API_RESULT aes_cmac_init (void);
@@ -116,5 +119,8 @@ void aes_cmac_aes_128_encryption_complete (UCHAR index, UCHAR status, UCHAR * da
 void aes_cmac_test (void);
 #endif /* AES_CMAC_PERFORMANCE_ANALYSIS */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_AES_CMAC_ */
 

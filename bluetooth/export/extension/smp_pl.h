@@ -350,6 +350,9 @@ typedef void (* SMP_LESC_LK_LTK_GEN_COMPLETE_CB)
         BT_smp_get_lk_ltk_pl(SMP_LESC_LTK_FROM_LK, (k), (h), (ct))
 #endif /* SMP_LESC_CROSS_TXP_KEY_GEN */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /**
  * \defgroup smp_pl_internal_defs Platform Internal Definitions
  * \{
@@ -1014,5 +1017,8 @@ API_RESULT smp_revamp_passkey_pl
 
 /** \} */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_SMP_PL_ */
 

@@ -35,6 +35,9 @@
     #define HFP_AG_PL_INF              BT_debug_null
 #endif /* HFP_AG_PL_DEBUG */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -49,4 +52,7 @@ void hfp_ag_stop_pl(void);
 void hfp_ag_write_pl (UCHAR * cmd, UINT16 cmdlen, void * context);
 void hfp_ag_access_pl(void);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_HFP_AG_PL_*/

@@ -18,6 +18,9 @@
 /* --------------------------------------------- Global Definitions */
 /* --------------------------------------------- Data types /Structures */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 
 #ifdef BASS_DB
@@ -46,4 +49,7 @@ GA_RESULT BASS_DB_fetch_rx_state_instance
 
 #endif /* BASS_DB */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_GA_BASS_DB_ */

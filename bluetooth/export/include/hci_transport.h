@@ -71,6 +71,9 @@ typedef struct _HT_PARSE
 } HT_PARSE;
 #endif /* HT_ENABLE_PARSE_UTIL */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* -----------------------------------------------  API Declarations */
 /* Init & Shutdown */
 void em_hci_transport_init (void);
@@ -117,5 +120,8 @@ void ht_parse_packet_init (HT_PARSE * ht);
 API_RESULT ht_parse_packet (HT_PARSE * ht);
 #endif /* HT_ENABLE_PARSE_UTIL */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_HCI_TRANSPORT_ */
 

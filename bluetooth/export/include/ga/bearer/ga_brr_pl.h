@@ -183,6 +183,9 @@ typedef GA_RESULT (* GA_BRR_PL_CB)
 #define GA_BRR_INIT_LOCAL_ARRAY     GA_INIT_LOCAL_ARRAY
 #define GA_BRR_DEINIT_LOCAL_ARRAY   GA_DEINIT_LOCAL_ARRAY
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -463,6 +466,9 @@ API_RESULT ga_gatt_cb_pl
            );
 #endif /* (defined GATT_CLIENT || defined GATT_SERVER) */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_GA_BRR_PL_ */
 
 

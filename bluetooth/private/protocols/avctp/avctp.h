@@ -17,6 +17,9 @@
 #include "BT_common.h"
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ----------------------------------------- API Declarations */
 
 /* AVCTP Initialization APIs */
@@ -29,6 +32,9 @@ void em_avctp_shutdown(void);
 #endif /* BT_HAVE_SHUTDOWN */
 void avctp_bt_shutdown ( void );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_AVCTP_ */
 
 

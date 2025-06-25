@@ -81,6 +81,9 @@ typedef struct _NWSIM_CALLINFO
     #define NWSIM_INF              BT_debug_null
 #endif /* NWSIM_DEBUG */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -115,4 +118,8 @@ NWSIM_CALLINFO * nwsim_alloc_call_context(UINT8 * idx);
 #ifdef MULTI_PROFILE_FSM_SUPPORT
 void nwsim_operations_multiprofile (void);
 #endif /* MULTI_PROFILE_FSM_SUPPORT */
+
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_NWSIM_*/

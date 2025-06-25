@@ -28,6 +28,9 @@
 /* Encry the plain text */
 #define smp_hci_encrypt BT_hci_le_encrypt
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /** ============================================= Internal Functions */
 
 /** ============================================= API Declarations */
@@ -68,4 +71,7 @@ void smp_lesc_test_aes_cmac_complete (void);
 #endif /* SMP_TBX_TEST_LESC_FUNCTIONS */
 #endif /* SMP_LESC */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_SMP_ */

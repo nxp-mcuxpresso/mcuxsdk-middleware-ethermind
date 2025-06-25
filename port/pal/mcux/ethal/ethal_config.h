@@ -21,6 +21,9 @@
 #define EM_CONFIG_MAX_CHARS_PER_LINE            128U
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ------------------------------------------ API/Function Declarations */
 /**
  *  An utility routine to read Configuration Parameter, related to
@@ -57,5 +60,8 @@ INT32 EM_config_read
           /* IN */ CHAR *    buffer
       );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_ETHAL_CONFIG_ */
 

@@ -395,6 +395,9 @@ typedef struct _VCP_RSP_INFO
 #define  VCP_RELEASE_AICS_CNF                           0xD6U
 #define  VCP_EVENT_INVALID                              0xFFU
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 /* ============= VCP Controller ============= */
 #ifdef VCP_CONTROLLER
@@ -845,6 +848,9 @@ GA_RESULT VCP_send_rsp
           );
 #endif /* VCP_RENDERER */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_VCP_ */
 
 

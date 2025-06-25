@@ -783,6 +783,9 @@ typedef struct _SMP_AES_CONTEXT
 /* SMP AES CMAC utility related callback function pointer type */
 typedef void (* SMP_AES_CMAC_UTILITY_CB)(void) DECL_REENTRANT;
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ----------------------------------------- Internal Functions */
 
 /* ----------------------------------------- API Declarations */
@@ -1134,5 +1137,8 @@ void smp_reset_aes_cmac_context(void);
 void smp_tbx_aes_cmac_128_encryption_complete (UCHAR index, UCHAR status, UCHAR * data, UINT16 datalen);
 #endif /* ((defined SMP_DATA_SIGNING) || (defined SMP_LESC)) */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_SMP_INTERNAL_ */
 

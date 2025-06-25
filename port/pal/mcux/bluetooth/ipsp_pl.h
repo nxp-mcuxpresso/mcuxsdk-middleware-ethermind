@@ -36,6 +36,9 @@
     #define IPSP_PL_INF              BT_debug_null
 #endif /* IPSP_PL_DEBUG */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -49,4 +52,7 @@ void ipsp_start_pl (BT_DEVICE_ADDR * remote_mac);
 void ipsp_stop_pl(void);
 void ipsp_write_pl (UCHAR * eth_data, UINT16 eth_datalen);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_IPSP_PL_*/

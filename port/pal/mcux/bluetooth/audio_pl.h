@@ -46,6 +46,9 @@
     #define AUDIO_PL_INF              BT_debug_null
 #endif /* AUDIO_DEBUG */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -67,4 +70,7 @@ API_RESULT audio_stop_pl (UCHAR ep);
 
 void audio_write_pl (UCHAR ep, UCHAR * m_data, UINT16 m_datalen);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_AUDIO_PL_*/

@@ -39,6 +39,9 @@
     #define PAN_PL_INF              BT_debug_null
 #endif /* PAN_PL_DEBUG */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -52,4 +55,7 @@ void pan_start_pl (UCHAR have_dhcp);
 void pan_stop_pl(void);
 void pan_write_pl (UCHAR * eth_header, UCHAR * eth_data, UINT16 eth_datalen);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_PAN_PL_*/

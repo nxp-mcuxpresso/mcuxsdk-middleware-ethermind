@@ -60,6 +60,9 @@
 #define VCS_UNLOCK_VOID()       GA_MUTEX_UNLOCK_VOID(vcs_mutex, VCP)
 #endif /* VCP_RENDERER */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 #ifdef VCP_CONTROLLER
 GA_RESULT vcp_get_context
@@ -225,6 +228,9 @@ UINT16 vcp_get_next_char_handle_for_config
        );
 #endif /* VCP_RENDERER */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_VCP_INTERNAL */
 
 

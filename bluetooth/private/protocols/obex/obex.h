@@ -26,6 +26,9 @@
 /* -------------------------------------------- Macros */
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* -------------------------------------------- Function Declarations */
 void em_obex_init( void );
 #ifdef BT_HAVE_SHUTDOWN
@@ -35,5 +38,8 @@ void obex_bt_init( void );
 void obex_bt_shutdown( void );
 
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_OBEX_ */
 

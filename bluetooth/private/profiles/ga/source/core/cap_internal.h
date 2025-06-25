@@ -313,6 +313,9 @@ typedef GA_RESULT (* CAP_SEP_CP_HANDLER)
 #define CAP_UNLOCK()                GA_MUTEX_UNLOCK(cap_mutex, CAP)
 #define CAP_UNLOCK_VOID()           GA_MUTEX_UNLOCK_VOID(cap_mutex, CAP)
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Functions */
 GA_RESULT ga_brr_callback
           (
@@ -531,5 +534,9 @@ void cap_csm_lock_timeout_handler(void * args, UINT16 size);
 UINT16 cap_handle_csip_lock(GA_ENDPOINT * device, UINT8 lock);
 #endif /* CAP_CSIP_MEMBER */
 #endif /* GA_CSIP */
+
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_CAP_INTERNAL_ */
 

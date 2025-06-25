@@ -178,6 +178,10 @@ GA_RESULT otc_ga_brr_client_callback
 
 #define IS_OLCP_CHAR_HNDL(index, char_hndl) \
         (otc_sess[(index)].char_info[OTP_CHAR_ID_OLCP].handle == char_hndl)
+
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 /* Utility Functions - Callback related */
 GA_RESULT otc_fetch_entry_pos_for_cb(UINT8 * cb_id);
@@ -333,6 +337,10 @@ void ots_receive_ctrl_pnt_rsp_on_timer_expiry_handler
          void   * data,
          UINT16   datalen
      );
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif /* OTP_CLIENT */
 

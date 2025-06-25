@@ -17,6 +17,9 @@
 /* --------------------------------------------- Header File Inclusion */
 #include "BT_common.h"
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Functions */
 /**
  *  \fn em_att_init
@@ -63,4 +66,7 @@ void att_bt_init (void);
  */
 void att_bt_shutdown (void);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_ATT_ */

@@ -568,6 +568,9 @@ extern UINT16 GATT_SER_DEV_INFO_INST;
 /* Characteristic Instances */
 extern UINT16 GATT_CHAR_BATTERY_LVL_INST;
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 API_RESULT appl_ga_add_gaps(void);
 API_RESULT appl_ga_add_gatts(void);
 API_RESULT appl_ga_add_bas(void);
@@ -581,6 +584,9 @@ API_RESULT gatt_db_generic_gatt_char_handler
                GATT_DB_PARAMS * params
            );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* GATT_DB_DYNAMIC */
 #endif /* _H_GATT_DB_GA_ */
 

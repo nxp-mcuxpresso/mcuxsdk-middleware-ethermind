@@ -125,6 +125,9 @@ typedef void (*CSIP_CRYPTO_HANDLER)(GA_RESULT status, UCHAR * mac, UINT16 maclen
 #define CSIS_UNLOCK()            GA_MUTEX_UNLOCK(csis_mutex, CSIP)
 #define CSIS_UNLOCK_VOID()       GA_MUTEX_UNLOCK_VOID(csis_mutex, CSIP)
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 CSIP_CONTEXT * csip_find_context
                (
@@ -234,5 +237,8 @@ UINT8 csip_get_next_char_config
           /* IN */ GA_CHAR_INFO *ga_char_info
       );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_CSIP_INTERNAL */
 

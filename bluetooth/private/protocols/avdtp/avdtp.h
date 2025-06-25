@@ -26,6 +26,9 @@
 /* ----------------------------------------- Unions */
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ----------------------------------------- API Declarations */
 
 /* AVDTP Initialization APIs */
@@ -38,6 +41,9 @@ void em_avdtp_shutdown(void);
 #endif /* BT_HAVE_SHUTDOWN */
 void avdtp_bt_shutdown ( void );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_AVDTP_ */
 
 

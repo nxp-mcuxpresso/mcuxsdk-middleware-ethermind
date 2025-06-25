@@ -30,6 +30,9 @@
 
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -41,4 +44,7 @@ void niface_stack_down(void);
 void niface_setup_down (void);
 void niface_dhcp_down (struct netif * iface);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_NIFACE_*/

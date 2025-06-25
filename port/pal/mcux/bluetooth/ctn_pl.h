@@ -284,6 +284,9 @@ typedef struct _CTN_OBJ_LIST_INFO_
 
 #endif /* CTN_PL_DEBUG */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 /* This function read attribues of an CTN object */
 API_RESULT ctn_get_object_attributes_pl
@@ -418,5 +421,9 @@ API_RESULT BT_ctn_build_event_file_pl
                /* IN */  UCHAR   *handle,
                /* IN */  UCHAR   *cal_type
            );
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif /* _H_CTN_PL_ */

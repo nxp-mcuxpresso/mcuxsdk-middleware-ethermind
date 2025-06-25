@@ -48,6 +48,9 @@ typedef struct _GA_HCI_ISO_HEADER
 } GA_HCI_ISO_HEADER;
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 typedef GA_RESULT (*APPL_HCI_CB) 
                    (
@@ -405,5 +408,8 @@ GA_RESULT appl_ga_hci_brr_unregister_callback(APPL_HCI_CB cb);
 
 void appl_ga_hci_brr_extract_iso_header(UCHAR* header, GA_HCI_ISO_HEADER * iso_header);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_GA_BRR_APPLHCI */
 

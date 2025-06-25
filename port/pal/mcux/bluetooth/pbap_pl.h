@@ -190,6 +190,9 @@ typedef struct _PBAP_VCARD_LIST
 #define     VCARD_PROP_BIT_MASK_X_BT_UCI                    0x40000000U
 #define     VCARD_PROP_BIT_MASK_X_BT_UID                    0x80000000U
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 void get_vcard_handle(UCHAR *vcard, UINT16 *handle);
@@ -229,5 +232,8 @@ API_RESULT BT_pbap_build_vcard_pl
                 /* OUT */   UINT16 * out_vcard_data_len
            );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_PBAP_PL_ */
 

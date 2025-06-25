@@ -2757,6 +2757,9 @@ typedef struct _GA_BRR_INTERFACE
 
 /** \} */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 
 /**
@@ -4416,5 +4419,8 @@ GA_RESULT GA_brr_crypto
 /** \} */
 /** \} */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_GA_BEARER_API_ */
 

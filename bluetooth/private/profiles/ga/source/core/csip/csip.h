@@ -189,6 +189,9 @@ typedef void (* CSIP_SIRK_CB)
 
 /** \} */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 GA_RESULT CSIP_client_init(void);
 GA_RESULT CSIP_client_shutdown(void);
@@ -550,6 +553,9 @@ GA_RESULT CSIP_sirk_process
               /* IN */ CSIP_SIRK_CB cb
           );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_CSIP_ */
 
 

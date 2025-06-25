@@ -130,6 +130,9 @@ typedef struct
 }RACP_EVENT_INFO;
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /*---------------------------------------- Function Prototypes */
 API_RESULT racp_validate_request
            (
@@ -147,5 +150,8 @@ void racp_post_request
      );
 #endif /* BT_RACP */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_RACP_ */
 

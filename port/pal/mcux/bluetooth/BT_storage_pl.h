@@ -63,6 +63,9 @@
 
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -84,4 +87,7 @@ INT16 storage_read_pl (UCHAR type, void * buffer, UINT16 size);
 INT16 storage_write_signature_pl (UCHAR type);
 INT16 storage_read_signature_pl (UCHAR type);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_STORAGE_PL_ */

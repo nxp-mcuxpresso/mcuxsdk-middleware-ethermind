@@ -260,6 +260,9 @@ typedef struct _PARSER_CONTEXT_STRUCT_
 /* --------------------------------------------- Macros */
 #define object_parser_get_token_id token_match
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -335,6 +338,9 @@ UCHAR get_next_delimiter
 
 UINT16 get_next_action (UCHAR delim, UINT16  * state);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_OBJECT_PARSER_API_ */
 
 

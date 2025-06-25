@@ -61,6 +61,9 @@ typedef API_RESULT (* HTTPS_TRANSPORT_CB_PL)
                        UINT16 https_http_rsp_len
                    );
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* -------------------------------------------- Function Declarations */
 /**
  * HTTPS PL interface for transport Initialization.
@@ -93,5 +96,8 @@ API_RESULT https_transport_open_pl (UCHAR * ip_addr);
 /** HTTPS PL interface to Close TCP-IP Transport */
 void https_transport_close_pl (void);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_HTTPS_PL_ */
 

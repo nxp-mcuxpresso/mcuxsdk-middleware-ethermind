@@ -44,8 +44,14 @@ typedef API_RESULT (* GATT_DB_PL_EXT_HANDLER_CB)
                        /* IN */ GATT_DB_PARAMS * param
                    ) DECL_REENTRANT;
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ----------------------------------------------- Function Declarations */
 API_RESULT gatt_db_init_pl(GATT_DB_PL_EXT_HANDLER_CB hndlr_cb);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_GATT_DB_PL_ */
 

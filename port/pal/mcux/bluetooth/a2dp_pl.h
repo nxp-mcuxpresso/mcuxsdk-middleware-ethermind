@@ -50,6 +50,9 @@
     #define A2DP_PL_INF              BT_debug_null
 #endif /* A2DP_PL_DEBUG */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -91,4 +94,8 @@ void audio_set_media_file_name_pl(UCHAR* media_file_name);
 void a2dp_audio_set_speaker_volume_pl(UCHAR value);
 void a2dp_audio_set_speaker_volume(UCHAR value);
 #endif /* MULTI_PROFILE_FSM_SUPPORT */
+
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_A2DP_PL_*/

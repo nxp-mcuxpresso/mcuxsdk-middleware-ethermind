@@ -21,6 +21,9 @@
 
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -29,4 +32,7 @@ void storage_bt_init (void);
 void storage_shutdown (void);
 void storage_bt_shutdown (void);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_STORAGE_ */

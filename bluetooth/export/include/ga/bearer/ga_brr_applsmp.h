@@ -24,6 +24,9 @@
 /** LE Security Modes */
 #define GA_SMP_LEGACY_MODE             0x01U
 #define GA_SMP_LESC_MODE               0x02U
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 GA_RESULT appl_ga_smp_brr_get_bd_handle
           (
@@ -46,5 +49,8 @@ GA_RESULT appl_ga_smp_brr_verify_resolvable_pvt_addr
           );
 void appl_ga_smp_brr_set_automatic_mode(UINT8 mode);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_GA_BRR_APPLSMP */
 

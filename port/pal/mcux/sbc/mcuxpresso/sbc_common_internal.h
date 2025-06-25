@@ -276,6 +276,9 @@
 
 /* ---------------------------------- External Variables */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ---------------------------------- Internal Function Declarations */
 
 /* Calculate CRC */
@@ -298,5 +301,8 @@ UCHAR sbc_calculate_crc
     UCHAR input
 );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_SBC_COMMON_INTERNAL_ */
 

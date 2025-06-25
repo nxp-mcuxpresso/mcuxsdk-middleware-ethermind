@@ -63,6 +63,9 @@ typedef struct uart_fw_download_settings
 } fw_download_setting_t;
 /*===================== Global Vars ==============================================*/
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /*==================== Function Prototypes ======================================*/
 /******************************************************************************
  *
@@ -86,4 +89,7 @@ typedef struct uart_fw_download_settings
  *****************************************************************************/
 void *uart_init_interface(void);
 
+#ifdef __cplusplus
+};
+#endif
 #endif // FW_LOADER_UART_H

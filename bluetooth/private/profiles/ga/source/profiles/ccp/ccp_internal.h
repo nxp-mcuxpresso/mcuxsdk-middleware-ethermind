@@ -228,6 +228,9 @@ typedef struct  _CCP_TBS_ENTITY
 #define CCP_SE_UNLOCK_VOID()            GA_MUTEX_UNLOCK_VOID(ccp_se_mutex, CCP)
 #endif /* CCP_SERVER */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 
 #ifdef CCP_CLIENT
@@ -396,6 +399,9 @@ GA_RESULT  ccp_se_register_service
            );
 #endif /* CCP_SERVER */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_CCP_INTERNAL */
 
 

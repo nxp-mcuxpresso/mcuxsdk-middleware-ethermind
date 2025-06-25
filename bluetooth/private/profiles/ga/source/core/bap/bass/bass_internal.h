@@ -181,6 +181,10 @@ typedef struct _BASS_SE_ENTITY
         bass_se_entity.bass_char_bc_rx_state_id[(inst)] = BASS_INST_UNUSED;
 
 #endif /* GA_BASS_SERVER */
+
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 
 #ifdef GA_BASS_CLIENT
@@ -275,5 +279,8 @@ GA_RESULT bass_se_ga_brr_server_callback
           );
 #endif /* GA_BASS_SERVER */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_BASS_INTERNAL_ */
 

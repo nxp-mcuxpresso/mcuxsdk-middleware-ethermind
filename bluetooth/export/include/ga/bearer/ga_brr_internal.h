@@ -43,6 +43,9 @@ typedef struct _GA_BRR_CONTEXT
 
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 GA_RESULT ga_brr_context_alloc
           (
@@ -226,5 +229,8 @@ GA_RESULT ga_brr_crypto
               /* IN */ void            * context
           );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_GA_BRR_INTERNAL_ */
 

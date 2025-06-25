@@ -30,6 +30,9 @@
 /* Hack. TBD */
 #define EM_MODULE_ID_AES_CMAC  0
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -40,5 +43,8 @@ void aes_cmac_init_pl (void);
 API_RESULT aes_cmac_128B_encrypt_pl (UCHAR * key, UCHAR * data, UCHAR * encout);
 void aes_cmac_128B_encrypt_complete_pl(UCHAR index, UCHAR status, UCHAR * data, UINT16 length);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_AES_CMAC_PL_ */
 

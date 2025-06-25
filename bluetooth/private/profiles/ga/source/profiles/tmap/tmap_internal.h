@@ -97,6 +97,9 @@ typedef struct _TMAP_SE
 #define TMAP_LOCK_VOID()              GA_MUTEX_LOCK_VOID(tmap_mutex, TMAP)
 #define TMAP_UNLOCK_VOID()            GA_MUTEX_UNLOCK_VOID(tmap_mutex, TMAP)
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 #ifdef TMAP_CLIENT
 UINT8 tmap_ce_get_char_id_from_uuid(UINT16 uuid);
@@ -147,5 +150,8 @@ GA_RESULT tmap_ga_brr_service_callback
 
 #endif /* TMAP_SERVER */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_TMAP_INTERNAL_ */
 

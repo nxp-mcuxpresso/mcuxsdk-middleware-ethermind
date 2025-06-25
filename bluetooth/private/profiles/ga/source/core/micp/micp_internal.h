@@ -56,6 +56,9 @@
 #define MICS_UNLOCK()            GA_MUTEX_UNLOCK(mics_mutex, MICP)
 #define MICS_UNLOCK_VOID()       GA_MUTEX_UNLOCK_VOID(mics_mutex, MICP)
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 
 #ifdef MICP_DEVICE
@@ -203,4 +206,8 @@ UINT8 micp_get_next_char_config
       );
 
 #endif /* MICP_CONTROLLER */
+
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_MICP_INTERNAL */

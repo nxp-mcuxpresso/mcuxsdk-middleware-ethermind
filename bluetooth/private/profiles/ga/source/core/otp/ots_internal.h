@@ -84,6 +84,9 @@ typedef struct _OTP_OTS_ENTITY_
 
 }OTP_OTS_ENTITY;
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* Callback registered with GA Bearer for Server Callbacks only */
 GA_RESULT ots_ga_brr_server_callback
           (
@@ -138,6 +141,10 @@ GA_RESULT ots_fetch_char_inst_id_from_char_uuid
               /* IN */   UINT16              char_uuid,
               /* OUT */  UINT8             * ots_char_inst_id
           );
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif /* OTP_SERVER */
 

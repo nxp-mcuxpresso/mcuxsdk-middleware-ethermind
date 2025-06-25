@@ -78,6 +78,9 @@ typedef struct _SCO_AUDIO_EP_INFO
 #define SCO_PL_INF                  BT_debug_null
 #endif /* SCO_PL_DEBUG */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -99,5 +102,9 @@ void sco_audio_spkr_play_pl (UCHAR * m_data, UINT16 m_datalen);
 #endif /* HCI_SCO */
 #ifdef HFP_BRIDGING
 API_RESULT sco_bridge_audio_start_pl (UINT16 sco_handle_1, UINT16 sco_handle_2);
+#endif
+
+#ifdef __cplusplus
+};
 #endif
 #endif /* _H_SCO_AUDIOS_PL_*/

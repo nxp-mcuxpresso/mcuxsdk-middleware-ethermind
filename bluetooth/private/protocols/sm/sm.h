@@ -32,6 +32,9 @@
 #define SM_DISCONNECTION_COMPLETE               0x09U
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ----------------------------------------- Internal Functions */
 #if 0
 /** Security Manager Access Requests */
@@ -208,6 +211,9 @@ API_RESULT sm_dump_device_status (UCHAR *bd_addr);
 
 #endif /* CLASSIC_SEC_MANAGER */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_SM_ */
 
 

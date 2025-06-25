@@ -404,6 +404,10 @@ typedef struct _MCP_MCS_ENTITY
 
 #endif /* MCP_SUPPORT_OBJECT_TRANSFER */
 #endif /* MCP_SERVER */
+
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 #ifdef MCP_CLIENT
 #ifdef MCP_SUPPORT_OBJECT_TRANSFER
@@ -753,5 +757,8 @@ GA_RESULT mcp_se_fetch_mcp_se_handle_from_otp_se_id
 #endif /* MCP_SUPPORT_OBJECT_TRANSFER */
 #endif /* MCP_SERVER */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_MCP_INTERNAL_ */
 

@@ -488,6 +488,9 @@ typedef struct _BAP_CAPABILITY_INFO
 
 #define BAP_ISEVENT_BROADCAST(ev) GA_BRR_ISEVENT_CONNECTIONLESS(ev)
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- APIs */
 #ifdef BAP_PACS_CLIENT
 GA_RESULT BAP_client_init(void);
@@ -874,5 +877,9 @@ GA_RESULT BAP_get_context_record_count
               UINT8 * snk_sep_count
           );
 #endif /* BAP_SUPPORT_CONTEXT_MANAGE */
+
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_BAP_ */
 

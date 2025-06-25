@@ -26,6 +26,9 @@
 
 /* --------------------------------------------- API Declarations */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /**
  * \brief Calculate 16bit CRC on the input buffer
  *
@@ -56,5 +59,8 @@ API_RESULT cry_perform_crc16_op(void* input_buf, UINT32 input_len, UINT16* crc);
  */
 API_RESULT cry_perform_crc32_op(void* input_buf, UINT32 input_len, UINT32* crc);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_CRY_PL_ */
 

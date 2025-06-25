@@ -22,6 +22,9 @@
 
 /* --------------------------------------------- Macros */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- Internal Functions */
 
 /* --------------------------------------------- API Declarations */
@@ -35,5 +38,8 @@ int _lseek (int fd);
 void HardFault_Handler(void);
 void debugHardfault(uint32_t *sp);
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_TOOLSPEC_ */
 

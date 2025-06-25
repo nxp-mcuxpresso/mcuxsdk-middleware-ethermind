@@ -17,6 +17,9 @@
 #include "BT_common.h"
 #include "BT_device_queue.h"
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- API Declarations */
 
 /* RFCOMM Initialization and Shutdown related APIs */
@@ -37,6 +40,9 @@ API_RESULT rfcomm_sm_access_response
                /* IN */  UINT16             result
            );
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_RFCOMM_ */
 
 

@@ -71,6 +71,9 @@ typedef struct
 /* ----------------------------------------- Macros */
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ----------------------------------------- API Declarations */
 /** To return IO Capability to caller */
 API_RESULT BT_sm_get_remote_io_cap
@@ -140,5 +143,8 @@ API_RESULT sm_get_remote_oob_data_pl
            );
 #endif /* BT_SSP_OOB */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_SM_SSP_PL_ */
 

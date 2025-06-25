@@ -30,6 +30,9 @@
 /* --------------------------------------------- Macros */
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* --------------------------------------------- API Declarations */
 /** Initialization/Shutdown of BNEP */
 void em_bnep_init ( void );
@@ -58,6 +61,9 @@ API_RESULT BT_bnep_write_raw
            );
 #endif /* BNEP_TEST_MODE_RAW */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_BNEP_ */
 
 

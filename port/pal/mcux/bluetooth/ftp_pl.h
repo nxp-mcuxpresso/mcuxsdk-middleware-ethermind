@@ -43,6 +43,9 @@
 /* ----------------------------------------- Macros */
 
 
+#ifdef __cplusplus
+extern "C"{
+#endif
 /* ----------------------------------------- API Declarations */
 API_RESULT BT_ftp_server_create_xml_dir_listing
            (
@@ -53,5 +56,8 @@ API_RESULT BT_ftp_server_create_xml_dir_listing
 
 /* ----------------------------------------- Function Declarations */
 
+#ifdef __cplusplus
+};
+#endif
 #endif /* _H_FTP_PL_ */
 
