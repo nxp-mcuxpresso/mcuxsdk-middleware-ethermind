@@ -155,10 +155,10 @@ API_RESULT sco_audio_start_pl (void)
 API_RESULT sco_audio_stop_pl (void)
 {
 #ifdef HFP_BRIDGING
-	if(num_sco_conn > 0)
-	{
-		num_sco_conn--;
-	}
+    if(num_sco_conn > 0)
+    {
+        num_sco_conn--;
+    }
     printf("num_sco_conn = %d\n",num_sco_conn);
 #endif //HFP_BRIDGING
    /* Send VSC 0x73 command to enable WBS for second next call */
@@ -193,6 +193,7 @@ void sco_audio_set_wideband_pl (UCHAR enable)
     UCHAR config[3U] = {0x03U, 0x00U, 0xFFU};
     printf ("Wideband Config at Controller: %s\n",(enable)? "Enabled": "Disabled");
 
+#ifndef HFP_BRIDGING
     printf("Sending Vendor command 0028\n");
     /* Inform the controller about 8K/16K configuration */
     config[2U] = (BT_TRUE == enable)? 0x07U: 0x03U;
@@ -214,6 +215,7 @@ void sco_audio_set_wideband_pl (UCHAR enable)
     printf(" Sending Vendor command 0070 now\n");
     UCHAR new5[1U] = {0x01U};
     (BT_IGNORE_RETURN_VALUE) BT_hci_vendor_specific_command(0x0070U, new5, sizeof(new5));
+#endif
 
     if (0U != enable)
     {
@@ -227,7 +229,9 @@ void sco_audio_set_wideband_pl (UCHAR enable)
            UCHAR new4[1U] = {0x00U};
            (BT_IGNORE_RETURN_VALUE) BT_hci_vendor_specific_command(0x0073U, new4, sizeof(new4));
     }
+#ifndef HFP_BRIDGING
     (BT_IGNORE_RETURN_VALUE) BT_hci_vendor_specific_command(0x0028U, config, sizeof(config));
+#endif
 }
 
 void sco_audio_play_ringtone_pl (void)
