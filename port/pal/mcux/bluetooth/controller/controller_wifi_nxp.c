@@ -73,6 +73,12 @@
 #define BT_OP(ogf, ocf) ((ocf) | ((ogf) << 10))
 #define BT_OGF_VS       0x3f
 
+#if defined(WIFI_IW610_BOARD_MURATA_2LL_M2)
+#define FW_INIT_WAIT 260
+#else
+#define FW_INIT_WAIT 60
+#endif
+
 /* Weak function. */
 #if defined(__GNUC__)
 #define __WEAK_FUNC __attribute__((weak))
@@ -205,7 +211,7 @@ static void controller_hci_uart_init(void)
     *param_len                         = sizeof(hciUartConfig.runningBaudrate);
     *((uint32_t *)(&sendingBuffer[4])) = hciUartConfig.runningBaudrate;
     /*delay to make sure controller is ready to receive command*/
-    OSA_TimeDelay(60);
+    OSA_TimeDelay(FW_INIT_WAIT);
     error = HAL_UartSendBlocking((hal_uart_handle_t)s_controllerHciUartHandle, &sendingBuffer[0], 8);
     assert(kStatus_HAL_UartSuccess == error);
     error = HAL_UartReceiveBlocking((hal_uart_handle_t)s_controllerHciUartHandle, &recvBuffer[0], 7);
