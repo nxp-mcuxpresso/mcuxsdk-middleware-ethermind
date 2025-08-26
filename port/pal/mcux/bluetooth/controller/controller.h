@@ -15,6 +15,8 @@ extern "C" {
 /* Initialize the platform */
 void controller_init(void);
 
+void controller_hci_uart_init(void);
+
 #ifdef __cplusplus
 }
 #endif

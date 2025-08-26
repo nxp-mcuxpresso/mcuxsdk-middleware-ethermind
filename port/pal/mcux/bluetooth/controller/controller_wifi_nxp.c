@@ -89,11 +89,6 @@
 #endif
 
 /*******************************************************************************
- * Prototypes
- ******************************************************************************/
-static void controller_hci_uart_init(void);
-
-/*******************************************************************************
  * Variables
  ******************************************************************************/
 static UART_HANDLE_DEFINE(s_controllerHciUartHandle);
@@ -155,7 +150,7 @@ __WEAK_FUNC int controller_hci_uart_get_configuration(controller_hci_uart_config
     return -1;
 }
 
-static void controller_hci_uart_init(void)
+void controller_hci_uart_init(void)
 {
     uint16_t *opcode;
     uint8_t *param_len;
