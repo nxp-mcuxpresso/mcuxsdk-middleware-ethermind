@@ -19,6 +19,9 @@
 
 #ifdef BT_STORAGE
 
+#ifndef CONFIG_ETHERMIND_NVM_SIZE
+#define CONFIG_ETHERMIND_NVM_SIZE 8192U
+#endif
 #define CONFIG_NVM_SIZE  ((UINT32)CONFIG_ETHERMIND_NVM_SIZE) //(8U * 1024U)
 
 /* --------------------------------------------- External Global Variables */
