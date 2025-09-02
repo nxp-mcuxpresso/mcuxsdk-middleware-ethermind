@@ -22,7 +22,23 @@
 #ifndef CONFIG_ETHERMIND_NVM_SIZE
 #define CONFIG_ETHERMIND_NVM_SIZE 8192U
 #endif
-#define CONFIG_NVM_SIZE  ((UINT32)CONFIG_ETHERMIND_NVM_SIZE) //(8U * 1024U)
+
+#ifndef MFLASH_PAGE_SIZE
+#define LFS_PROG_SIZE 256U
+#else
+#define LFS_PROG_SIZE MFLASH_PAGE_SIZE
+#endif
+
+// Assert that CONFIG_ETHERMIND_NVM_SIZE is a multiple of LITTLEFS_PROG_SIZE
+_Static_assert((CONFIG_ETHERMIND_NVM_SIZE % LFS_PROG_SIZE) == 0,
+               "CONFIG_ETHERMIND_NVM_SIZE must be a multiple of LITTLEFS_PROG_SIZE");
+
+// Define CONFIG_NVM_SIZE:
+// If CONFIG_ETHERMIND_NVM_SIZE is set to 0 (e.g., via prj.conf), use 1 instead to allocate a minimal 4-byte buffer.
+// This avoids the need to update all references to CONFIG_NVM_SIZE throughout the codebase.
+// Otherwise, use the actual value of CONFIG_ETHERMIND_NVM_SIZE.
+
+#define CONFIG_NVM_SIZE  ((UINT32)((CONFIG_ETHERMIND_NVM_SIZE == 0) ? 1 : CONFIG_ETHERMIND_NVM_SIZE)) //(8U * 1024U)
 
 /* --------------------------------------------- External Global Variables */
 
@@ -297,7 +313,17 @@ INT16 storage_read_pl (UCHAR type, void * buffer, UINT16 size)
 #if ((defined STORAGE_IDLE_TASK_SYNC_ENABLE) && (STORAGE_IDLE_TASK_SYNC_ENABLE)) || \
     (!((defined(CONFIG_BT_SETTINGS)) && (CONFIG_BT_SETTINGS)))
     nbytes = (INT16)size;
-    BT_mem_copy(buffer, (NvmSaveBuf + nv_offset), size);
+    if ((nv_offset + nbytes) < CONFIG_NVM_SIZE)
+    {
+        BT_mem_copy(buffer, (NvmSaveBuf + nv_offset), size);
+    }
+    else
+    {
+        /* assert here, the buffer length CONFIG_NVM_SIZE is less than the
+         * requested read size.
+         */
+        assert(1 == 0);
+    }
     nv_offset += size;
 #else
     nbytes = 0;

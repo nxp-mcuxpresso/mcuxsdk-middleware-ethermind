@@ -23,10 +23,10 @@ menu "Ethermind Bluetooth Stack"
 		int
 		prompt "NVM Configuration Size (bytes)"
 		default 8192
-		range 1 8192
+		range 0 8192
 		help
 			Specifies the size of the Non-Volatile Memory (NVM) buffer used for persistent storage.
-			The value must be between 1 and 8192 bytes.
+			The value must be between 0 and 8192 bytes.
 
 	# Physical interface of HCI. Currently supports UART and RPMSG.
 	config MCUX_PRJSEG_middleware.wireless.ethermind.common.ethermind.hci
