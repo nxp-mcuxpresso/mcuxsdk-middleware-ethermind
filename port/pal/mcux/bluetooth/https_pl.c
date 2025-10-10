@@ -30,13 +30,16 @@
 
 #include "mbedtls/entropy.h"
 #include "mbedtls/hmac_drbg.h"
-#include "mbedtls/certs.h"
-#include "mbedtls/x509.h"
+#include "test/certs.h"
+#include "mbedtls/x509_crt.h"
 #include "mbedtls/ssl.h"
 #include "mbedtls/ssl_cache.h"
 #include "mbedtls/debug.h"
+#include "hw_init/hw_init.h"
 
-#if defined(MBEDTLS_MCUX_ELS_PKC_API)
+#if defined(MBEDTLS_USE_PSA_CRYPTO)
+#include "psa/crypto.h"
+#elif defined(MBEDTLS_MCUX_ELS_PKC_API)
 #include "els_pkc_mbedtls.h"
 #else
 #include "ksdk_mbedtls.h"
@@ -298,8 +301,18 @@ static int https_init(void)
     const char *pers = "aws_iot_tls_wrapper";
     const mbedtls_md_info_t *md_info;
 
-    /* Crypto init */
+    /* PSA Crypto init*/
+    #if defined(MBEDTLS_USE_PSA_CRYPTO)
+    psa_status_t psa_status = psa_crypto_init();
+    if (psa_status != PSA_SUCCESS) {
+        HTTPS_PL_ERR("PSA crypto init failed: %d\n", psa_status);
+    }
+    assert(psa_status == PSA_SUCCESS);
+    HTTPS_PL_TRC("PSA crypto initialized successfully\n");
+    #else
+    /* Legacy Crypto init */
     CRYPTO_InitHardware();
+    #endif
 
     mbedtls_hmac_drbg_init(&(tlsDataParams.hmac_drbg));
     mbedtls_x509_crt_init(&(tlsDataParams.cacert));
@@ -342,7 +355,8 @@ static int https_init(void)
     }
 
     ret = mbedtls_pk_parse_key(&(tlsDataParams.pkey), (const unsigned char *)mbedtls_test_cli_key,
-                               mbedtls_test_cli_key_len, NULL, 0U);
+                               mbedtls_test_cli_key_len, NULL, 0U, mbedtls_hmac_drbg_random, &(tlsDataParams.hmac_drbg));
+
     if (ret != 0U)
     {
         HTTPS_PL_ERR(" failed\n  !  mbedtls_pk_parse_key returned -0x%x while parsing private key\n\n", -ret);
@@ -539,6 +553,11 @@ static int https_deinit(void)
     mbedtls_pk_free(&(tlsDataParams.pkey));
     mbedtls_hmac_drbg_free(&(tlsDataParams.hmac_drbg));
     mbedtls_entropy_free(&(tlsDataParams.entropy));
+
+    /* PSA cleanup */
+    #if defined(MBEDTLS_USE_PSA_CRYPTO)
+    mbedtls_psa_crypto_free();
+    #endif
 
     return SUCCESS;
 }
