@@ -80,14 +80,10 @@ menu "Ethermind Bluetooth Stack"
 		select MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.https_pl
 		select MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.ipsp_pl
 		select MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.pan_pl
-	  	select MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.hps_pl
-		select MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.ipsp_pl
 		select MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.hfp_ag_pl
-		select MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.pan_pl
 		select MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.sco_audio_pl
 		select MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.a2dp
 		select MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.vcom
-		select MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.niface
 
 	config ETHERMIND_BTDM_STACK
 		bool "ethermind btdm stack/export interface"
