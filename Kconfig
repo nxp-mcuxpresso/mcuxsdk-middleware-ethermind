@@ -136,7 +136,7 @@ menu "Ethermind Bluetooth Stack"
 	config MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.hps_pl
 		bool "port.pal.mcux.bluetooth.hps_pl"
 
-	config MCUX_COMPONENT_middleware.ethermind.crypto.psa
+	config ETHERMIND_CRYPTO_PSA_ENABLED
 		bool
 		select MCUX_COMPONENT_component.psa_crypto_driver.dcp if MCUX_HW_DEVICE_MIMXRT1052 || MCUX_HW_DEVICE_MIMXRT1062 || \
 																MCUX_HW_DEVICE_MIMXRT1042
@@ -150,7 +150,9 @@ menu "Ethermind Bluetooth Stack"
 	config MCUX_PRJSEG_middleware.wireless.ethermind.port.pal.mcux.bluetooth.https_pl
 		bool "port.pal.mcux.bluetooth.https_pl"
 		select MCUX_COMPONENT_middleware.mbedtls3x
-		select MCUX_COMPONENT_middleware.ethermind.crypto.psa if MCUX_HW_DEVICE_MIMXRT1042 || MCUX_HW_DEVICE_MIMXRT1062 || \
+		select MCUX_COMPONENT_middleware.mbedtls3x.tests_certs_only
+		select MCUX_COMPONENT_middleware.mbedtls3x.ssl.no_psa
+		select ETHERMIND_CRYPTO_PSA_ENABLED if MCUX_HW_DEVICE_MIMXRT1042 || MCUX_HW_DEVICE_MIMXRT1062 || \
                                                MCUX_HW_DEVICE_MIMXRT685S || MCUX_HW_DEVICE_MIMXRT1176 || \
                                                MCUX_HW_DEVICE_MIMXRT595S || MCUX_HW_DEVICE_MIMXRT1052 || \
                                                MCUX_HW_DEVICE_MIMXRT1189 || MCUX_HW_DEVICE_MIMXRT1187 || \
