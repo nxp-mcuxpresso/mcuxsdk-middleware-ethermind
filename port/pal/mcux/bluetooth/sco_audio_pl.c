@@ -190,10 +190,10 @@ API_RESULT sco_audio_stop_pl (void)
 void sco_audio_set_wideband_pl (UCHAR enable)
 {
     WBS_mode = enable;
-    UCHAR config[3U] = {0x03U, 0x00U, 0xFFU};
     printf ("Wideband Config at Controller: %s\n",(enable)? "Enabled": "Disabled");
 
 #ifndef HFP_BRIDGING
+    UCHAR config[3U] = {0x03U, 0x00U, 0xFFU};
     printf("Sending Vendor command 0028\n");
     /* Inform the controller about 8K/16K configuration */
     config[2U] = (BT_TRUE == enable)? 0x07U: 0x03U;

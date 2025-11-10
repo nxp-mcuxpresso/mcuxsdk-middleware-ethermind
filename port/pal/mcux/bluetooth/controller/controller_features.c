@@ -173,7 +173,10 @@ static status_t PCAL6408A_ModifyReg(void *handle, uint8_t reg, uint8_t mask, uin
 #endif /*PCAL6408A_IO_EXP_ENABLE*/
 
 #ifdef ENABLE_BT_IND_RESET
+#ifdef CONTROLLER_IR_GPIO_PIN_TOGGLE
 DECL_STATIC void configure_ir_reset_ind_gpio(void);
+#endif
+
 DECL_STATIC void controller_config_oob_ir_gpio(void);
 DECL_STATIC void controller_trigger_oob_ir(void);
 DECL_STATIC uint8_t controller_wait_for_ir_config_status(void);
