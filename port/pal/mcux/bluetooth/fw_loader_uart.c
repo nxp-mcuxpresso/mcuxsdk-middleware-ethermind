@@ -719,7 +719,7 @@ DECL_STATIC bool fw_loader_init_read (void)
     fw_loader_uart_task_attr.thread_priority   = (configMAX_PRIORITIES - 3);
 
     /* Create a thread to receive data From Serial PORT and BUFFER it */
-    if (0U != BT_thread_create(&fw_read_task, &fw_loader_uart_task_attr, fw_loader_read_packet_task, NULL))
+    if (0 != BT_thread_create(&fw_read_task, &fw_loader_uart_task_attr, fw_loader_read_packet_task, NULL))
     {
         PRINT_ERR("[FW-LOADER] read thread create fail\n");
     }

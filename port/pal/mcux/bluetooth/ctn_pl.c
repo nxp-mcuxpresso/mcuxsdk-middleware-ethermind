@@ -226,7 +226,7 @@ API_RESULT BT_ctn_build_object_listing_pl
                                (UCHAR *)ctn_obj_attr.update,
                                (UCHAR )BT_str_len(ctn_obj_attr.update)
                             );
-                if (time_cmp == 1U)
+                if (time_cmp == 1)
                 {
                     /**
                      * period_begin > update_time, ignore

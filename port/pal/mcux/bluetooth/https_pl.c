@@ -846,7 +846,7 @@ API_RESULT https_transport_init_pl
     https_task_attr.thread_priority   = BT_TASK_PRIORITY;
 
     /* Create a thread to receive data from Socket and BUFFER it */
-    if (BT_thread_create (&tid, &https_task_attr, https_read_task_pl, NULL) != 0U)
+    if (BT_thread_create (&tid, &https_task_attr, https_read_task_pl, NULL) != 0)
     {
         HTTPS_PL_ERR(
         "[HTTPS-PL] Could NOT Create HPS Transport Read Thread\n");
@@ -865,7 +865,7 @@ API_RESULT https_transport_init_pl
     https_task_attr.thread_priority   = BT_TASK_PRIORITY;
 
     /* Create a thread to build https connect */
-    if (BT_thread_create (&tid, &https_task_attr, https_connect_task, NULL) != 0U)
+    if (BT_thread_create (&tid, &https_task_attr, https_connect_task, NULL) != 0)
     {
         HTTPS_PL_ERR(
         "[HTTPS-PL] Could NOT Create HPS HTTPS connect Thread\n");

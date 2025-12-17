@@ -154,7 +154,7 @@ void hci_uart_init (void)
     hci_uart_task_attr.thread_priority   = (BT_TASK_PRIORITY + 2U);
 
     /* Create a thread to receive data From Serial PORT and BUFFER it */
-    if (0U != BT_thread_create(&tid, &hci_uart_task_attr, hci_uart_read_task, NULL))
+    if (0 != BT_thread_create(&tid, &hci_uart_task_attr, hci_uart_read_task, NULL))
     {
         HCI_UART_ERR(
         "[HCI-UART] Could NOT Create UART Read Thread\n");

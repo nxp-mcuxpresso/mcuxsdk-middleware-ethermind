@@ -129,7 +129,7 @@ API_RESULT hps_transport_init_pl
 
     /* Create a thread to receive data from Socket and BUFFER it */
     // coverity[overrun-buffer-val:SUPPRESS]
-    if (BT_thread_create(&tid, &hps_task_attr, hps_read_task_pl, NULL) != 0U)
+    if (BT_thread_create(&tid, &hps_task_attr, hps_read_task_pl, NULL) != 0)
     {
         HPS_PL_ERR(
         "[HPS-PL] Could NOT Create HPS Transport Read Thread\n");
