@@ -63,7 +63,8 @@ defined(MIMXRT1172_SERIES) || defined(MIMXRT1171_SERIES)
 #define SWAPL(x) \
     ((((x) >> 24U) & 0xffU) | (((x) >> 8) & 0xff00U) | (((x) << 8) & 0xff0000UL) | (((x) << 24) & 0xff000000UL))
 
-#define MAX_LENGTH             0xFFFFU // Maximum 2 byte value
+#define MAX_LENGTH             4096U // Updated from 0xFFFFU (64 KB) to 4096 bytes (4 KB) based on current bootloader implementation,
+                                     // which supports a maximum FW chunk size of 4 KB.
 #define END_SIG_TIMEOUT        2500U
 #define MAX_CTS_TIMEOUT        500U  // 500ms
 #define TIMEOUT_VAL_MILLISEC   4000U // Timeout for getting 0xa5 or 0xaa or 0xa7, 2 times of helper timeout
