@@ -161,19 +161,6 @@ API_RESULT sco_audio_stop_pl (void)
     }
     printf("num_sco_conn = %d\n",num_sco_conn);
 #endif //HFP_BRIDGING
-   /* Send VSC 0x73 command to enable WBS for second next call */
-    if (0U != WBS_mode)
-    {
-        printf(" sco_audio_stop_pl: Sending Vendor command 0073 with WBS enabled\n");
-        UCHAR new4[1U] = {0x01U};
-        (BT_IGNORE_RETURN_VALUE) BT_hci_vendor_specific_command(0x0073U, new4, sizeof(new4));
-    }
-    else
-    {
-        printf(" sco_audio_stop_pl: Sending Vendor command 0073 with WBS disabled\n");
-        UCHAR new4[1U] = {0x00U};
-        (BT_IGNORE_RETURN_VALUE) BT_hci_vendor_specific_command(0x0073U, new4, sizeof(new4));
-    }
 
 #ifndef HFP_BRIDGING
     (BT_IGNORE_RETURN_VALUE) sco_audio_stop_pl_ext();
