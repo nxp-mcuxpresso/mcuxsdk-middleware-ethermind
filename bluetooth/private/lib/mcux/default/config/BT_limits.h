@@ -797,7 +797,7 @@
  *  Minimum Value: 1
  *  Maximum Value: 255
  */
-#define L2CAP_MAX_PSM                                   10U
+#define L2CAP_MAX_PSM                                   20U
 
 /*
  *  Maximum number of connection-oriented logical channels that L2CAP needs
@@ -807,7 +807,7 @@
  *  Minimum Value: 1
  *  Maximum Value: as required.
  */
-#define L2CAP_MAX_CE                                    16U
+#define L2CAP_MAX_CE                                    20U
 
 /*
  *  Maximum number of connection-less channels (groups) that L2CAP needs
