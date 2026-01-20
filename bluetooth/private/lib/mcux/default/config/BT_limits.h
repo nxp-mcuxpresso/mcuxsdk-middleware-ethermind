@@ -2054,7 +2054,7 @@
  *  Minimum Value: 1
  *  Maximum Value: 16
  */
-#define AVRCP_MAX_USER_CONTEXTS                         3U
+#define AVRCP_MAX_USER_CONTEXTS                         10U
 
 /*
  *  AVRCP Command Timeout in number of seconds
