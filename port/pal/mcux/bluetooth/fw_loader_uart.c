@@ -13,7 +13,7 @@
 #endif
 
 #if defined(MIMXRT1176_cm7_SERIES) || defined(MIMXRT1175_cm7_SERIES) || defined(MIMXRT1173_cm7_SERIES) || \
-defined(MIMXRT1172_SERIES) || defined(MIMXRT1171_SERIES)
+defined(MIMXRT1172_SERIES) || defined(MIMXRT1171_SERIES) || defined(MIMXRT1176_cm4_SERIES)
 #define MIMXRT1170_CPU_SERIES
 #endif
 
@@ -786,11 +786,18 @@ void *uart_init_interface(void)
                 BT_TRUE,                /*isSecondaryBaudRate required?*/
 #if defined(FW_LOADER_NONBLOCKING)
 #if defined(MIMXRT1170_CPU_SERIES) && defined(WIFI_BT_USE_M2_INTERFACE)
+#if defined(MIMXRT1176_cm7_SERIES)
 				0,						/*dma_instance*/
 				4,						/*rx_channel*/
 				5,						/*tx_channel*/
 				0,						/*dma_mux_instance*/
-				kDmaRequestMuxLPUART2Rx,/*rx_request*/
+#else /* MIMXRT1176_cm4_SERIES */
+				1,						/*dma_instance*/
+				0,						/*rx_channel*/
+				1,						/*tx_channel*/
+				1,						/*dma_mux_instance*/
+#endif
+                kDmaRequestMuxLPUART2Rx,/*rx_request*/
 				kDmaRequestMuxLPUART2Tx /*tx_request*/
 #elif defined(MCXN947_cm33_core0_SERIES)
 				0,						/*dma_instance*/
