@@ -104,7 +104,7 @@ DECL_STATIC UINT32 hci_uart_rx_byte_count;
 DECL_STATIC HT_PARSE ht;
 
 /* TODO: Check if we need to use any other common define */
-#define HCI_RX_QUEUE_SIZE (1024U)
+#define HCI_RX_QUEUE_SIZE (2048U)
 
 #ifdef BT_SNOOP_WRITE_TRUNCATE
 #define BT_SNOOP_PKTLEN_LIMIT 256U
@@ -781,6 +781,11 @@ DECL_STATIC BT_THREAD_RETURN_TYPE hci_uart_read_task (BT_THREAD_ARGS args)
 #ifdef HT_ENQUEUE_WITH_RETURN
                     nqd = 0U;
                     tnqd = 0U;
+                    if(hci_uart_rx_data_buff[0] == 0x02U && hci_uart_rx_data_buff[1] == 0xFFU && hci_uart_rx_data_buff[2] == 0xFFU)
+                    {
+                        printf("FW Crash Detected, Dumping the packet \r\n ");
+                    }
+
                     BT_LOOP_FOREVER()
                     {
                         tnqd += nqd;
