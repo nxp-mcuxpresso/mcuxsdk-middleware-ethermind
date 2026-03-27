@@ -362,6 +362,7 @@ void (*fw_upload_CloseUart)(LPUART_Type *base);
 hal_uart_status_t (*fw_upload_init_uart)(hal_uart_handle_t handle, const hal_uart_config_t *config);
 hal_uart_dma_status_t (*fw_upload_ComWriteChar)(hal_uart_handle_t handle,  uint8_t *data, size_t length);
 hal_uart_dma_status_t (*fw_upload_ComReadChar)(hal_uart_handle_t handle, uint8_t *data, size_t length,bool receiveAll);
+hal_uart_dma_status_t (*fw_upload_AbortWriteChar)(hal_uart_handle_t handle);
 hal_uart_status_t (*fw_upload_GetBufferSize)(hal_uart_handle_t handle, uint32_t *reCount);
 hal_uart_status_t (*fw_upload_CloseUart)(hal_uart_handle_t handle);
 #else
@@ -939,23 +940,24 @@ DECL_STATIC void fw_upload_IoFuncInit(void)
     fw_upload_DelayInMs = OSA_TimeDelay;
     fw_upload_GetTime   = EM_get_time_ms;
 #if defined(USE_LPUART_DRIVER) && !defined(FW_LOADER_NONBLOCKING)
-    fw_upload_ComReadChar   = LPUART_ReadBlocking;
-    fw_upload_ComWriteChar  = LPUART_WriteBlocking;
-    fw_upload_init_uart     = LPUART_Init;
-    fw_upload_GetBufferSize = LPUART_TransferGetRxRingBufferLength;
-    fw_upload_CloseUart     = LPUART_Deinit;
+    fw_upload_ComReadChar    = LPUART_ReadBlocking;
+    fw_upload_ComWriteChar   = LPUART_WriteBlocking;
+    fw_upload_init_uart      = LPUART_Init;
+    fw_upload_GetBufferSize  = LPUART_TransferGetRxRingBufferLength;
+    fw_upload_CloseUart      = LPUART_Deinit;
 #elif defined(FW_LOADER_NONBLOCKING)
-    fw_upload_ComReadChar   = HAL_UartDMATransferReceive;
-    fw_upload_ComWriteChar  = HAL_UartDMATransferSend;
-    fw_upload_init_uart     = HAL_UartInit;
-    fw_upload_GetBufferSize = NULL;
-    fw_upload_CloseUart     = HAL_UartDeinit;
+    fw_upload_ComReadChar    = HAL_UartDMATransferReceive;
+    fw_upload_ComWriteChar   = HAL_UartDMATransferSend;
+    fw_upload_AbortWriteChar = HAL_UartDMAAbortSend;
+    fw_upload_init_uart      = HAL_UartInit;
+    fw_upload_GetBufferSize  = NULL;
+    fw_upload_CloseUart      = HAL_UartDeinit;
 #else
-    fw_upload_ComReadChar   = HAL_UartReceiveBlocking;
-    fw_upload_ComWriteChar  = HAL_UartSendBlocking;
-    fw_upload_init_uart     = HAL_UartInit;
-    fw_upload_GetBufferSize = NULL;
-    fw_upload_CloseUart     = HAL_UartDeinit;
+    fw_upload_ComReadChar    = HAL_UartReceiveBlocking;
+    fw_upload_ComWriteChar   = HAL_UartSendBlocking;
+    fw_upload_init_uart      = HAL_UartInit;
+    fw_upload_GetBufferSize  = NULL;
+    fw_upload_CloseUart      = HAL_UartDeinit;
 #endif // defined(USE_LPUART_DRIVER) && !defined(FW_LOADER_NONBLOCKING)
 }
 
@@ -1157,7 +1159,12 @@ DECL_STATIC int fw_upload_uartWriteFrame(uint8_t *buff, uint32_t buff_size)
 		}
 		else
 		{
-			PRINT("Write Failure retrying: retry_cnt = %d \n",retry_cnt);
+			PRINT("Write Failure retrying: retry_cnt = %d ret_code = %d \n", retry_cnt, ret_code);
+			ret_code = fw_upload_AbortWriteChar((hal_uart_handle_t) s_controllerHciUartHandle);
+			if (ret_code != kStatus_HAL_UartDmaSuccess)
+			{
+				PRINT_ERR("ret_code = %d \n",ret_code);
+			}
 			retry_cnt -- ;
 		}
 	}
