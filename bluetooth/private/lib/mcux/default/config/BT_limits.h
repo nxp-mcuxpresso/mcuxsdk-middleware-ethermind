@@ -1402,7 +1402,7 @@
  *  Minimum Value: 1
  *  Maximum Value: 62
  */
-#define AVDTP_MAX_STREAM_CONTEXTS                       3U
+#define AVDTP_MAX_STREAM_CONTEXTS                       4U
 
 /*
  *  Maximum number of Signaling Commands that can be outstanding at any
@@ -2016,7 +2016,7 @@
  *  Minimum Value: 1
  *  Maximum Value: 62
  */
-#define A2DP_MAX_CODECS                                 3U
+#define A2DP_MAX_CODECS                                 4U
 
 /*
  *  Maximum buffer size required to store AVDTP Discover Response in each
@@ -2094,7 +2094,7 @@
  *  Minimum Value: 1
  *  Maximum Value: RFCOMM_MAX_CONNECTION
  */
-#define HFP_UNIT_MAX_CONNECTIONS                        1U
+#define HFP_UNIT_MAX_CONNECTIONS                        2U
 
 /*
  *  Maximum size of AT Command.
