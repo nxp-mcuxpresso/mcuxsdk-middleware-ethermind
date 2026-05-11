@@ -3119,6 +3119,16 @@
  *  Dependency: None.
  */
 #define HAVE_AVDTP_MEDIA_PKT_FLUSHABLE
+
+/*
+ *  AVDTP_HAVE_UPDATE_MEDIAOUT_MTU
+ *
+ *  This flag is used to enable A2DP & AVDTP interfaces to set the
+ *  Out MTU for the media channel.
+ *
+ *  Dependency: None.
+ */
+#define AVDTP_HAVE_UPDATE_MEDIAOUT_MTU
 #endif /* AVDTP */
 
 /* ----------------------------------------------------------------------- */
@@ -5205,4 +5215,3 @@
 /* #define HCI_UART_DEBUG */
 
 #endif /* _H_BT_FEATURES_ */
-

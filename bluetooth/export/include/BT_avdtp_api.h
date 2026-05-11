@@ -3366,6 +3366,31 @@ API_RESULT BT_avdtp_register_codec_config_validate_hndlr
            );
 #endif /* AVDTP_ENABLE_CODEC_CONFIG_VALIDATION */
 
+#ifdef AVDTP_HAVE_UPDATE_MEDIAOUT_MTU
+/**
+ *  \brief To set Out MTU of AVDTP media channel.
+ *
+ *  \par Description:
+ *  This API enables the upper layer to set the Out MTU size of AVDTP media channel.
+ *  This API is to workaround an issue when a peer sets max OutMTU of 0xFFFF, the
+ *  addition of L2CAP_HDR_SIZE to it for notifying the Max MPS to application causes
+ *  a wrap around of the size leading to assert.
+ *
+ *  \param [in] handle
+ *         The AVDTP Handle corresponding to the connection.
+ *
+ *  \param [in] mtu
+ *         Pointer to Out MTU vallue of the AVDTP media channel.
+ *
+ *  \return API_RESULT
+ *          API_SUCCESS, or, an Error Code from BT_error.h
+ */
+API_RESULT BT_avdtp_update_mediaout_mtu
+           (
+               /* IN */ AVDTP_HANDLE    * handle,
+               /* IN */ UINT16            mtu
+           );
+#endif /* AVDTP_HAVE_UPDATE_MEDIAOUT_MTU */
 #ifdef __cplusplus
 };
 #endif

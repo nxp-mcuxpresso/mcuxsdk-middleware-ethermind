@@ -1880,6 +1880,34 @@ API_RESULT BT_a2dp_get_sep_id
            );
 #endif /* A2DP_ENABLE_SEID_ACCESS */
 
+#ifdef AVDTP_HAVE_UPDATE_MEDIAOUT_MTU
+/**
+ *  \brief To set Out MTU of A2DP media channel.
+ *
+ *  \par Description:
+ *  This API enables the application to set the Out MTU size of A2DP media channel.
+ *  This API is to workaround an issue when a peer sets max OutMTU of 0xFFFF, the
+ *  addition of L2CAP_HDR_SIZE to it for notifying the Max MPS to application causes
+ *  a wrap around of the size leading to assert.
+ *
+ *  \param [in] inst
+ *         The A2DP codec instance.
+ *
+ *  \param [in] mtu
+ *         Out MTU value of the A2DP media channel.
+ *
+ *  \return API_RESULT
+ *          API_SUCCESS, or, an Error Code from BT_error.h
+ *
+ *  \note This API shall be called by the application immediately upon reception of
+ *        A2DP_CONNECT_CNF or A2DP_CONNECT_IND with success status.
+ */
+API_RESULT BT_a2dp_update_mediaout_mtu
+           (
+               /* IN */ UCHAR    inst,
+               /* IN */ UINT16   mtu
+           );
+#endif /* AVDTP_HAVE_UPDATE_MEDIAOUT_MTU */
 #ifdef AVDTP_ASSISTIVE_MODE
 /**
  *  \brief To Get Media Channel params.
